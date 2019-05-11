@@ -1,0 +1,31 @@
+<resources>
+    <declare-styleable name="ExpandableMenuOverlay">
+
+        <attr name="adjustViewSize" format="boolean"/>
+
+        <!-- 设置菜单样式 -->
+        <attr name="menuButtonStyle" format="integer"/>
+
+        <!--  展开按钮与关闭按钮的大小 -->
+        <attr name="mainButtonSize" format="float"/>
+        <!-- 其它按钮的大小  子按钮大小 -->
+        <attr name="otherButtonSize" format="float"/>
+        
+        <!-- 第一行y轴的位置 -->
+        <attr name="distanceY" format="float"/>
+        <!-- 中心按钮在x轴的位置  展开按钮与关闭按钮 每行中心那个的按钮的x轴位置 -->
+        <attr name="distanceX" format="float"/>
+        <!-- 展开按钮距离父视图的底部位置 -->
+        <attr name="bottomPad" format="float"/>
+
+        <!-- 菜单按钮的标题与图标 -->
+        <attr name="closeButtonSrc" format="integer"/>
+        <attr name="leftButtonSrc" format="integer"/>
+        <attr name="leftButtonText" format="integer"/>
+        <attr name="midButtonSrc" format="integer"/>
+        <attr name="midButtonText" format="integer"/>
+        <attr name="rightButtonSrc" format="integer"/>
+        <attr name="rightButtonText" format="integer"/>
+
+    </declare-styleable>
+</resources>

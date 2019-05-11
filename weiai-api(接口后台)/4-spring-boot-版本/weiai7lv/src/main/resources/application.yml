@@ -1,0 +1,76 @@
+#使用外置的tomcat服务器启动时该项配置将不起作用
+server:
+  port: 8080
+
+#mybatis的配置
+  #注意1：':'之后要跟一个空格，比较坑的地方
+dataSource:
+  driver: com.mysql.jdbc.Driver
+  url: jdbc:mysql://localhost:3306/weiai7lv?useUnicode=true&characterEncoding=utf8&useSSL=false
+  username: root
+  password:
+
+#c3p0数据库连接池
+c3p0:
+    initialPoolSize: 5
+    maxPoolSize: 1000
+    minPoolSize: 5
+    maxStatements: 200
+    acquireIncrement: 3
+    maxIdleTime: 60
+    idleConnectionTestPeriod: 120
+
+#redis的配置
+redis:
+  #redis服务端ip地址
+  host: 127.0.0.1
+  #服务端端口号
+  port: 6379
+  #数据库索引，就是要连接的数据库了
+  dbIndex: 0
+
+  #其它连接池的配置
+  #设置最大连接数
+  maxTotal: 1000
+  #设置最大空闲连接数
+  maxIdle: 100
+  #设置最小空闲连接数
+  minIdle: 1
+  #设置连接池没有连接后客户端的最大等待时间，单位是毫秒
+  maxWaitMillis: 6000
+  #是否在从池中取出连接之前进行检验，如果检验失败则从池中去除该连接并尝试取出另一个
+  testOnBorrow: true
+
+  #设置缓存过期时间，单位为秒,可以在redis-cli使用ttl key查看设置是否生效
+  expiration: 86400
+
+
+#常量配置
+webConfig:
+  #系统保存客户端上传的文件的根目录
+  #本地测试
+  RootPath:
+    UploadFile:
+      #本地
+      Private: /Users/wjy/apacheweb/weiai7lv/images
+      Public: /Users/wjy/apacheweb/weiai7lv/pulImgs
+      #发布
+      #Private: /var/javaweb/static/weiai7lv/images
+      #Public: /var/javaweb/static/weiai7lv/pulImgs
+
+    #返回给客户端的图片路径需要拼接上的域名
+    #因为图片具有隐私性，所以不能使用nginx分离出静态资源的访问，其它的静态资源可以
+  ServerName:
+    Resource:
+      Private: http://weiai.wujiuye.com/images
+      #返回给客户端的图片路径需要拼接上的域名（静态资源的配置，另启一个服务器的）
+      Public: http://images.wujiuye.com/weiai7lv/pulImgs
+
+  #保存相册的根目录
+  ImagesRootPath:
+    Album: /album
+    #保存恋爱时光所上传的照片的根目录
+    Lovetime: /lovetime
+    #纪念日背景图片上传保存的根路径
+    Memorialday: /memorialday
+

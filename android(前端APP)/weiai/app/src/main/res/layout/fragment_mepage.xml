@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <!-- 第一层情侣背景图片 -->
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/ivLoverImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image_default_lover_bg" />
+
+    <!-- 第二层背景 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="10">
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/view_margin_left_right_20"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5.5">
+
+            <!-- 退出 -->
+            <ImageView
+                android:id="@+id/ivLogout"
+                android:layout_width="@dimen/icon_default_size"
+                android:layout_height="@dimen/icon_default_size"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_margin="@dimen/view_margin_left_right_20"
+                android:src="@mipmap/icon_logout"/>
+
+        </RelativeLayout>
+
+        <!-- 不规则背景 -->
+        <wjy.weiai.widget.MeBgView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4.5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.55" />
+
+    </LinearLayout>
+
+
+    <!-- 头像一层 -->
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/view_margin_left_right_10"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.58">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <wjy.weiai.widget.CircleImageView
+                    android:id="@+id/ivManUserImg"
+                    android:layout_width="@dimen/user_head_img_size"
+                    android:layout_height="@dimen/user_head_img_size"
+                    android:src="@mipmap/default_user_img1" />
+
+                <TextView
+                    android:id="@+id/tvManUsername"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/view_margin_top_buttom"
+                    android:text="用户名"
+                    android:textSize="@dimen/font_size_context"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="@dimen/icon_small_size"
+                android:layout_height="@dimen/icon_small_size"
+                android:layout_gravity="center_vertical"
+                android:src="@mipmap/icon_lovelove" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <wjy.weiai.widget.CircleImageView
+                    android:id="@+id/ivWomenUserImg"
+                    android:layout_width="@dimen/user_head_img_size"
+                    android:layout_height="@dimen/user_head_img_size"
+                    android:src="@mipmap/default_user_img2" />
+
+                <TextView
+                    android:id="@+id/tvWomenUsername"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/view_margin_top_buttom"
+                    android:text="用户名"
+                    android:textSize="@dimen/font_size_context"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.58">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_small_size"
+                    android:layout_height="@dimen/icon_small_size"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/icon_singer" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tvSignature"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/view_margin_top_buttom_small"
+                android:layout_weight="1"
+                android:maxLines="5"
+                android:text="签名..."
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/font_size_large" />
+
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="10">
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6" />
+
+
+        <!-- 菜单放这里 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/view_margin_left_right_20"
+                android:layout_height="@dimen/fragment_cardmenu_heigth"
+                android:gravity="center_horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:weightSum="11">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <!-- 纪念日 -->
+                    <RelativeLayout
+                        android:id="@+id/lyMemorial"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_weight="4"
+                        android:background="@drawable/memenu_round_bg">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginLeft="@dimen/view_margin_left_right_10"
+                            android:layout_marginTop="@dimen/view_margin_left_right_10"
+                            android:text="@string/women_lover_znr"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/font_size_small" />
+
+                        <TextView
+                            android:id="@+id/tvMemorialdayCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginBottom="@dimen/view_margin_left_right_10"
+                            android:layout_marginLeft="@dimen/view_margin_left_right_10"
+                            android:text="0 条"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/font_size_context" />
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_default_size"
+                            android:layout_height="@dimen/icon_default_size"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginRight="@dimen/view_margin_left_right_10"
+                            android:layout_marginTop="@dimen/view_margin_left_right_10"
+                            android:src="@mipmap/icon_znr" />
+
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <!-- 恋爱打卡 -->
+                    <RelativeLayout
+                        android:id="@+id/lySubjectCard"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_weight="4"
+                        android:background="@drawable/memenu_round_bg1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginLeft="@dimen/view_margin_left_right_10"
+                            android:layout_marginTop="@dimen/view_margin_left_right_10"
+                            android:text="@string/women_lover_dacard"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/font_size_small" />
+
+                        <TextView
+                            android:id="@+id/tvPunchcardCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginBottom="@dimen/view_margin_left_right_10"
+                            android:layout_marginLeft="@dimen/view_margin_left_right_10"
+                            android:text="0 主题"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/font_size_context" />
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_default_size"
+                            android:layout_height="@dimen/icon_default_size"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginRight="@dimen/view_margin_left_right_10"
+                            android:layout_marginTop="@dimen/view_margin_left_right_10"
+                            android:src="@mipmap/icon_card" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fragment_cardmenu_heigth"
+                android:layout_marginTop="@dimen/view_margin_left_right_20"
+                android:gravity="center_horizontal"
+                android:weightSum="11">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <!-- 一起看过的电影 -->
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_weight="4"
+                    android:background="@drawable/memenu_round_bg3">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="@dimen/view_margin_left_right_10"
+                        android:layout_marginTop="@dimen/view_margin_left_right_10"
+                        android:text="@string/women_lover_video"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/font_size_small" />
+
+                    <TextView
+                        android:id="@+id/tvMovieRecordCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginBottom="@dimen/view_margin_left_right_10"
+                        android:layout_marginLeft="@dimen/view_margin_left_right_10"
+                        android:text="0 部"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/font_size_context" />
+
+                    <ImageView
+                        android:layout_width="@dimen/icon_default_size"
+                        android:layout_height="@dimen/icon_default_size"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginRight="@dimen/view_margin_left_right_10"
+                        android:layout_marginTop="@dimen/view_margin_left_right_10"
+                        android:src="@mipmap/icon_video" />
+
+
+                </RelativeLayout>
+
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <!-- 爱情树 -->
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_weight="4"
+                    android:background="@drawable/memenu_round_bg2"
+                    android:visibility="invisible">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="@dimen/view_margin_left_right_10"
+                        android:layout_marginTop="@dimen/view_margin_left_right_10"
+                        android:text="@string/women_lover_aqshu"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/font_size_small" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginBottom="@dimen/view_margin_left_right_10"
+                        android:layout_marginLeft="@dimen/view_margin_left_right_10"
+                        android:text="功能未上线"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/font_size_context" />
+
+                    <ImageView
+                        android:layout_width="@dimen/icon_default_size"
+                        android:layout_height="@dimen/icon_default_size"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginRight="@dimen/view_margin_left_right_10"
+                        android:layout_marginTop="@dimen/view_margin_left_right_10"
+                        android:src="@mipmap/icon_aqshu" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,20 @@
+spring:
+  #quartz的配置
+  quartz:
+    #配置quartz任务的数据存储方式，分别为：MEMORY（内存方式：默认）、JDBC（数据库方式）
+    #这里实现的任务很简单，所以使用内存方式就行了
+    job-store-type: memory
+    properties:
+      org:
+        quartz:
+          scheduler:
+            #实例名称
+            instanceName: shiroSessionValidationScheduler
+          #线程池的相关配置
+          threadPool:
+            #线程池类名，指定使用那个线程池
+            class: org.quartz.simpl.SimpleThreadPool
+            #线程总数
+            threadCount: 4
+            #配置线程名称的前缀，自己看SimpleThreadPool的源码找出来的字段，试了下还真可以
+            threadNamePrefix: shiro_session_validation

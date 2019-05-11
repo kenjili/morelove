@@ -1,0 +1,45 @@
+#注意1：':'之后要跟一个空格，比较坑的地方
+
+#使用外置的tomcat服务器启动时该项配置将不起作用
+server:
+  port: 8080
+
+#mybatis的配置
+spring:
+  #数据库源
+  datasource:
+    #本地开发环境和线程环境相同的配置在这里配置
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/weiai7lv?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: Wujiuye*9565
+
+  #根据部署环境改写这个值选择不同的配置文件
+  profiles:
+    #使用application-dev.yml
+    active: prod
+    #导入其它配置文件application-quartz.yml
+    include: quartz
+
+  jackson:
+    #格式
+    date-format: yyyy-MM-dd HH:mm:ss
+    #时区
+    time-zone: GMT+8
+    #忽略为null的字段
+    default-property-inclusion: non_null
+
+
+#  #热部署配置
+#  devtools:
+#    restart:
+#      #是否启用热部署，默认已经是true了
+#      enabled: true
+
+#mybatis的配置
+mybatis:
+  #映射文件路径
+  config-location: classpath:mapper/*.xml
+  #类型别名包
+  type-aliases-package: com.wujiuye.pojo
+

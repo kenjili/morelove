@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/transparent"
+    android:layout_height="@dimen/ry_item_scenicarea_img_height">
+
+
+    <ImageView
+        android:id="@+id/ivAlbum"
+        android:layout_width="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_default_memorailday"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/view_margin_top_buttom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/TextviewTitleStyle"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:text="@string/app_signature"/>
+
+        <View
+            android:layout_marginLeft="@dimen/view_margin_top_buttom"
+            android:layout_marginBottom="@dimen/view_margin_top_buttom"
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="@color/activity_background_color"/>
+
+        <TextView
+            android:id="@+id/tvDetail"
+            android:textSize="@dimen/font_size_small"
+            android:textColor="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_signature"
+            android:maxLines="3"/>
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

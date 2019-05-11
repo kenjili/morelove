@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 需要引入tx、aop、context这三个spring的名称空间 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/task
+        http://www.springframework.org/schema/task/spring-task.xsd">
+
+    <!-- 因为需要导入多个properties文件，所以需要使用这种方式导入 -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:mybatis/database.properties</value>
+                <value>classpath:redis/redis.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 导入spring配置shiro的配置文件 -->
+    <import resource="classpath:security/spring-shiro.xml"/>
+
+    <!-- 导入spring配置redis的配置文件 -->
+    <import resource="classpath:redis/spring-redis.xml"/>
+
+    <!-- 使用c3p0连接池配置数据源，需要导入c3p0的jar包 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" >
+        <!-- 是否开启自动提交，默认为false -->
+        <property name="autoCommitOnClose" value="false"/>
+        <property name="driverClass" value="${dataSource.driver}"/>
+        <property name="jdbcUrl" value="${dataSource.url}"/>
+        <property name="user" value="${dataSource.username}"/>
+        <property name="password" value="${dataSource.password}"/>
+        <!-- 池的配置 -->
+        <!--初始化时获取多少个连接，取值应在minPoolSize与maxPoolSize之间。默认值: 3 -->
+        <property name="initialPoolSize" value="${c3p0.initialPoolSize}"/>
+        <property name="maxPoolSize" value="${c3p0.maxPoolSize}"/>
+        <property name="minPoolSize" value="${c3p0.minPoolSize}"/>
+        <property name="maxStatements" value="${c3p0.maxStatements}"/>
+        <!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。默认值: 3 -->
+        <property name="acquireIncrement" value="${c3p0.acquireIncrement}"/>
+        <!--最大空闲时间,指定多少秒内未使用则连接被丢弃。若为0则永不丢弃。默认值: 0 -->
+        <property name="maxIdleTime" value="${c3p0.maxIdleTime}"/>
+        <!--指定多少秒检查一次所有连接池中的空闲连接。默认值: 0 -->
+        <property name="idleConnectionTestPeriod" value="${c3p0.idleConnectionTestPeriod}"/>
+    </bean>
+
+    <!-- sqlsessionfactory，mybatis-spring提供的SqlSessionFactoryBean类,该类实现了FactoryBean接口 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!-- mybatis的核心配置文件路径，该文件中只保留mybatis的一些设置 -->
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+        <!-- 接口映射文件路径，*匹配任意字符 -->
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+    </bean>
+
+
+    <!-- 配置mapper接口的扫描 -->
+    <!-- bean的名称为接口的类名，首字母小写 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="wjy.weiai7lv.dao"/>
+    </bean>
+
+
+    <!-- 开启ioc注解扫描 -->
+    <!-- wjy.ssmm.service.**扫描业务接口实现类 -->
+    <!-- wjy.ssmm.aspect扫描切面类(普通的bean) -->
+    <context:component-scan base-package="wjy.weiai7lv.service.impl,
+            wjy.weiai7lv.aspect,
+            wjy.weiai7lv.tasks.impl,
+            wjy.weiai7lv.listener"/>
+
+     <!--开启aop注解扫描-->
+    <aop:aspectj-autoproxy />
+
+    <!-- 开启spring事务，依赖spring-jdbc的jar包 -->
+    <!-- 数据库事务管理器 -->
+    <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!-- 注入数据源 -->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!-- 开启事务注解功能 -->
+    <!--
+        如果不指定transaction-manager,默认会使用id设为transactionManager的事务管理器，
+        如果不指定transaction-manager，且事务管理器的id也不为transactionManager就，
+        就需要在@Transactional注解中配置transactionManager = "事务管理器的id"，否则就会抛出异常。
+        @Transactional(transactionManager="dataSourceTransactionManager");
+     -->
+    <tx:annotation-driven transaction-manager="dataSourceTransactionManager"/>
+
+
+    <!-- spring 线程池 -->
+    <!--
+        拒绝策略：
+        ABORT（默认）：抛出TaskRejectedException异常，然后不执行
+        DISCARD：直接丢弃该任务，不执行也不报异常
+        DISCARD_OLDEST：丢弃任务队列中最旧的那个任务，将该任务放进任务队列去
+        CALLER_RUNS：直接在调用者所在的线程执行
+    -->
+    <task:executor id="emailTaskExecutor" pool-size="2-5" keep-alive="300"  queue-capacity="512" rejection-policy="DISCARD"/>
+    <!-- 开启注解驱动，这样@Async才有用,并指定缺省的线程池，当@Async不指定线程池时，默认使用executor指定的线程池-->
+    <!-- 同时需要将@Async注册的方法所在的类注解为bean并添加到包扫描的配置中才行 -->
+    <task:annotation-driven executor="emailTaskExecutor"/>
+
+</beans>

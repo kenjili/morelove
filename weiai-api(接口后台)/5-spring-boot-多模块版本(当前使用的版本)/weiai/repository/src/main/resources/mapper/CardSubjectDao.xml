@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wujiuye.dao.CardSubjectDao">
+
+    <sql id="Base_Cell_List">
+        id,
+        love_id as loveId,
+        subject,
+        period as period,
+        subj_img as subjImg,
+        create_datetime as createDatetime,
+        update_datetime as updateDatetime
+    </sql>
+
+    <insert id="insertOne" parameterType="com.wujiuye.pojo.CardSubject">
+        insert into tb_cardsubj
+        (love_id,subject,period,subj_img)
+        values
+        (
+        #{loveId},#{subject},#{period},
+        <choose>
+            <when test="subjImg !=null">
+                #{subjImg}
+            </when>
+            <otherwise>
+                null
+            </otherwise>
+        </choose>
+        )
+    </insert>
+
+    <select id="getAllSubject" resultType="com.wujiuye.pojo.CardSubject">
+        select
+        <include refid="Base_Cell_List"/>
+        from tb_cardsubj
+        where love_id=#{loveId}
+        order by create_datetime desc
+    </select>
+
+    <delete id="deleteOne">
+        delete from tb_cardsubj where love_id=#{loveId} and subject=#{subject}
+    </delete>
+
+    <select id="findOne" resultType="com.wujiuye.pojo.CardSubject">
+        select
+        <include refid="Base_Cell_List"/>
+        from tb_cardsubj
+        where love_id=#{loveId}
+        and subject=#{subject}
+    </select>
+</mapper>

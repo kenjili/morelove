@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:padding="@dimen/view_margin_left_right_10"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        android:textSize="@dimen/font_size_supersmall"
+        android:visibility="gone"
+        android:text="2018-07-09 12:00:00"/>
+
+    <ImageView
+        android:id="@+id/ivUserImg"
+        android:layout_width="@dimen/icon_default_size"
+        android:layout_height="@dimen/icon_default_size"
+        app:layout_constraintRight_toRightOf="parent"
+        android:src="@mipmap/default_user_img1"/>
+
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="@dimen/ry_item_chat_message_tvmsg_max_width"
+        app:layout_constraintTop_toBottomOf="@id/ivUserImg"
+        app:layout_constraintRight_toLeftOf="@id/ivUserImg"
+        android:text="@string/app_signature"
+        android:textSize="@dimen/font_size_context"
+        android:textColor="@android:color/black"
+        android:paddingLeft="@dimen/view_margin_left_right_10"
+        android:paddingRight="@dimen/view_margin_left_right_20"
+        android:layout_marginTop="@dimen/view_margin_top_buttom_small"
+        android:background="@drawable/bg_msg_send"/>
+
+    <ProgressBar
+        android:id="@+id/pbSend"
+        android:layout_width="@dimen/icon_small_size"
+        android:layout_height="@dimen/icon_small_size"
+        app:layout_constraintRight_toLeftOf="@id/tvMessage"
+        app:layout_constraintTop_toTopOf="@id/tvMessage"
+        android:layout_marginRight="@dimen/view_margin_left_right_10"
+        android:visibility="gone"
+        tool:visibility="visible"/>
+
+    <ImageView
+        android:id="@+id/ivSendState"
+        android:layout_width="@dimen/icon_small_size"
+        android:layout_height="@dimen/icon_small_size"
+        app:layout_constraintRight_toLeftOf="@id/tvMessage"
+        app:layout_constraintTop_toTopOf="@id/tvMessage"
+        android:layout_marginRight="@dimen/view_margin_left_right_10"
+        android:visibility="gone"
+        tool:visibility="visible"
+        android:src="@mipmap/icon_gantanhao"/>
+
+</android.support.constraint.ConstraintLayout>

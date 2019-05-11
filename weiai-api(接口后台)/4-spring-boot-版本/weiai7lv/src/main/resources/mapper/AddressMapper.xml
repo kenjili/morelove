@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.wujiuye.weiai7lv.dao.AddressDao">
+
+    <insert id="savaProvince" parameterType="Province">
+        insert into tb_address_province (id,pro_name)Values (#{id},#{proName})
+    </insert>
+
+    <insert id="savaCity" parameterType="City">
+        insert into tb_address_city (id,city_name,pro_id)Values (#{id},#{cityName},#{province.id})
+    </insert>
+
+    <insert id="savaArea" parameterType="Area">
+        insert into tb_address_area (id,area_name,city_id,pro_id)
+        Values
+        (#{id},#{areaName},#{city.id},#{province.id})
+    </insert>
+
+    <insert id="savaAreaPro" parameterType="Area">
+        insert into tb_address_area (id,area_name,pro_id)
+        Values
+        (#{id},#{areaName},#{province.id})
+    </insert>
+
+    <resultMap id="rmArea" type="Area">
+        <id column="id" property="id"/>
+        <result column="area_name" property="areaName"/>
+    </resultMap>
+
+    <select id="getArea" resultMap="rmArea">
+        select * from tb_address_area where id = #{areaId}
+    </select>
+
+    <resultMap id="rmProvince" type="Province">
+        <id column="id" property="id"/>
+        <result column="pro_name" property="proName"/>
+    </resultMap>
+
+    <select id="getProvince" resultMap="rmProvince">
+        select * from tb_address_province where id=#{proId}
+    </select>
+
+    <resultMap id="rmCity" type="City">
+        <id column="id" property="id"/>
+        <result column="city_name" property="cityName"/>
+    </resultMap>
+
+    <select id="getCity" resultMap="rmCity">
+        select * from tb_address_city where id=#{cityId}
+    </select>
+
+</mapper>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.wujiuye.dao.AlbumDao">
+
+    <resultMap id="rmAlbum" type="Album">
+        <id column="id" property="id"/>
+        <result column="album_name" property="albumName"/>
+        <result column="create_datetime" property="createDatetime"/>
+        <result column="update_datetime" property="updateDatetime"/>
+        <association property="lover" columnPrefix="l_" resultMap="com.wujiuye.dao.LoverDao.rmLover"/>
+        <!-- 一对多 -->
+        <!--<collection property="photosList" column="id" ofType="Photos"-->
+                    <!--select="com.wujiuye.dao.PhotosDao.photosWithAlbum"/>-->
+        <!-- 自己写实现，避免查询递归死循环 -->
+        <collection property="photosList" column="id" ofType="Photos" select="getPhotos"/>
+    </resultMap>
+
+    <insert id="createAlbum" parameterType="Album" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_album (
+          love_id,
+          album_name)
+        values (
+          #{lover.id},
+          #{albumName})
+    </insert>
+
+    <select id="queryAlbum" parameterType="int" resultMap="rmAlbum">
+        select * from tb_album where id=#{id}
+    </select>
+
+
+    <!-- 获取该相册下的所有照片,这个方法是给一对多映射时查询用的，不需要在接口中定义 -->
+    <select id="getPhotos" resultMap="com.wujiuye.dao.PhotosDao.rmPhotos" parameterType="int">
+        select id,img,img_thumb,img_details,create_datetime,update_datetime
+        from tb_photos
+        where album_id=#{id}
+    </select>
+
+</mapper>

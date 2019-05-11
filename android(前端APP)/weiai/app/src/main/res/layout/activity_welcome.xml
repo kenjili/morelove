@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/image_welcome" />
+
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:text="3 秒"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/font_size_context"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/activity_margin_left_right"
+        android:layout_marginTop="@dimen/activity_margin_top_buttom"
+        android:background="@drawable/btn_welcome_time"
+        android:paddingLeft="@dimen/view_margin_left_right_10"
+        android:paddingRight="@dimen/view_margin_left_right_10"
+        android:paddingBottom="@dimen/view_margin_top_buttom_supersmall"
+        android:paddingTop="@dimen/view_margin_top_buttom_supersmall"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_margin_top_buttom"
+        android:gravity="center"
+        android:text="@string/app_signature"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/font_size_large"
+        app:layout_constraintBottom_toTopOf="@id/tvAppVersion" />
+
+    <TextView
+        android:id="@+id/tvAppVersion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_margin_top_buttom"
+        android:gravity="center"
+        android:text="@string/app_version"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/font_size_context"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>

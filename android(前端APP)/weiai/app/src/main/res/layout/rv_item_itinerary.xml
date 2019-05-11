@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ry_item_bg_round_white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/view_margin_left_right_10"
+        android:layout_marginRight="@dimen/view_margin_left_right_10"
+        android:layout_marginTop="@dimen/view_margin_top_buttom"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivUser"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/icon_default_size"
+            android:layout_height="@dimen/icon_default_size"
+            android:src="@mipmap/default_user_img1"/>
+
+        <TextView
+            android:id="@+id/tvUsername"
+            style="@style/TextviewContextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ivUser"
+            android:layout_marginLeft="@dimen/view_margin_left_right_10"
+            android:layout_centerVertical="true"
+            android:text="@string/app_name"/>
+
+        <ImageView
+            android:id="@+id/ivEdit"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="@dimen/icon_small_size"
+            android:layout_height="@dimen/icon_small_size"
+            android:src="@mipmap/icon_edit_jiantou"/>
+
+    </RelativeLayout>
+
+
+    <ImageView
+        android:id="@+id/ivAlbum"
+        android:layout_width="match_parent"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="@dimen/view_margin_top_buttom_small"
+        android:layout_height="@dimen/ry_item_lxj_img_height"
+        android:background="@android:color/transparent"
+        android:src="@drawable/img_default_memorailday"/>
+
+
+    <TextView
+        android:id="@+id/tvItinerartTitle"
+        style="@style/TextviewContextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:paddingTop="@dimen/view_margin_top_buttom"
+        android:paddingBottom="@dimen/view_margin_top_buttom_small"
+        android:paddingLeft="@dimen/view_margin_left_right_10"
+        android:paddingRight="@dimen/view_margin_left_right_10"
+        android:text="桂林一月游戏"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvItinerartContext"
+        style="@style/TextviewSmallContextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="3"
+        android:paddingBottom="@dimen/view_margin_left_right_10"
+        android:paddingLeft="@dimen/view_margin_left_right_10"
+        android:paddingRight="@dimen/view_margin_left_right_10"
+        android:text="桂林，简称桂，是世界著名的风景游览城市、国家对外开放重要的国际旅游城市、国际性旅游航运枢纽、全国健康旅游示范基地、万年人类智慧圣地 ；国务院批复确定的国际旅游胜地 ；联合国世界旅游组织/亚太旅游协会旅游趋势与展望国际论坛永久举办地。" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/view_margin_top_buttom_small"
+        android:paddingLeft="@dimen/view_margin_left_right_10">
+
+        <!-- 上传日期 -->
+        <ImageView
+            android:id="@+id/ivDate"
+            android:layout_width="@dimen/icon_small_size"
+            android:layout_height="@dimen/icon_small_size"
+            android:src="@mipmap/icon_date" />
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/view_margin_top_buttom_small"
+            android:text="2018-06-02" />
+
+    </LinearLayout>
+
+</LinearLayout>

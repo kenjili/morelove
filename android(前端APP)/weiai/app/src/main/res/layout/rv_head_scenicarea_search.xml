@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/ry_item_bg_round_white"
+    android:paddingLeft="@dimen/view_margin_left_right_10"
+    android:paddingRight="@dimen/view_margin_left_right_10"
+    android:paddingTop="@dimen/view_margin_top_buttom_small"
+    android:paddingBottom="@dimen/view_margin_top_buttom_small"
+    android:layout_height="wrap_content">
+
+
+    <EditText
+        android:id="@+id/etKeyword"
+        android:imeOptions="actionSearch"
+        android:lines="1"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/editview_height_small"
+        android:hint="@string/scenicarea_search_hint"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        android:paddingLeft="@dimen/view_margin_left_right_20"
+        android:paddingRight="@dimen/view_margin_left_right_20"
+        android:background="@drawable/btn_round_gray"/>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+
+    <dimen name="dialog_wloadingdialog_min_width">512.0dip</dimen>
+    <!-- 状态栏高度 -->
+    <dimen name="app_status_height">61.44dip</dimen>
+
+    <!-- 字体 -->
+    <!-- 标题字体大小 -->
+    <dimen name="font_size_title">40.96sp</dimen>
+    <!-- 内容字体大小 -->
+    <dimen name="font_size_context">35.84sp</dimen>
+    <!-- 小号字体 -->
+    <dimen name="font_size_small">30.72sp</dimen>
+    <!-- 超小号字体 -->
+    <dimen name="font_size_supersmall">25.6sp</dimen>
+    <!-- 偏大号 -->
+    <dimen name="font_size_large">46.08sp</dimen>
+    <!-- 超大号 -->
+    <dimen name="font_size_superlarge">51.2sp</dimen>
+    <dimen name="font_size_super_super_large">71.68sp</dimen>
+
+
+    <!-- 默认子控制与页面根布局的左右边距 -->
+    <dimen name="activity_margin_left_right">25.6dip</dimen>
+    <!-- 默认子控制与页面根布局的上下边距 -->
+    <dimen name="activity_margin_top_buttom">25.6dip</dimen>
+
+
+    <!-- 默认子控制与父控件的左右边距 -->
+    <dimen name="view_margin_left_right_10">25.6dip</dimen>
+    <dimen name="view_margin_left_right_20">51.2dip</dimen>
+    <!-- 默认子控制与父控件的上下边距 -->
+    <dimen name="view_margin_top_buttom_small">12.8dip</dimen>
+    <dimen name="view_margin_top_buttom_supersmall">6.4dip</dimen>
+    <dimen name="view_margin_top_buttom">25.6dip</dimen>
+    <dimen name="view_margin_top_buttom_large">38.4dip</dimen>
+    <dimen name="view_margin_top_buttom_superlarge">76.8dip</dimen>
+    <!-- 横条布局高度 -->
+    <dimen name="ly_menu_item_height">102.4dip</dimen>
+
+    <!-- 默认输入控件的高度 -->
+    <dimen name="editview_height_default">102.4dip</dimen>
+    <!-- 篇小的输入控件的高度 -->
+    <dimen name="editview_height_small">76.8dip</dimen>
+
+
+    <!-- 默认的按钮的高度 -->
+    <dimen name="button_height_default">115.2dip</dimen>
+    <!-- 偏小的按钮的高度 -->
+    <dimen name="button_height_small">89.60000000000001dip</dimen>
+    <dimen name="button_height_chat_input_send">76.8dip</dimen>
+    <dimen name="button_width_chat_input_send">153.6dip</dimen>
+
+
+    <!-- 导航栏高度 -->
+    <dimen name="navigation_bar_height">115.2dip</dimen>
+    <!-- 底部工具栏高度 -->
+    <dimen name="toolbar_height">128.0dip</dimen>
+
+
+    <!-- 默认图标大小 -->
+    <dimen name="icon_default_size">76.8dip</dimen>
+    <!-- 偏小图标大小 -->
+    <dimen name="icon_small_size">61.44dip</dimen>
+    <!-- 用户头像大小 -->
+    <dimen name="user_head_img_size">153.6dip</dimen>
+
+
+    <!-- 个人中心卡片菜单宽高 -->
+    <dimen name="fragment_cardmenu_width">307.2dip</dimen>
+    <dimen name="fragment_cardmenu_heigth">204.8dip</dimen>
+
+
+    <!-- 列表数据item的属性设置 -->
+    <dimen name="ry_item_lovetime_one_img_height">409.6dip</dimen>
+    <dimen name="ry_item_lovetime_two_img_height">358.40000000000003dip</dimen>
+    <dimen name="ry_item_lovetime_three_img_height">307.2dip</dimen>
+    <dimen name="ry_item_lxj_img_height">512.0dip</dimen>
+    <dimen name="ry_item_movie_boxoffice_img_width">256.0dip</dimen>
+    <dimen name="ry_item_scenicarea_img_height">460.8dip</dimen>
+    <dimen name="ry_item_chat_message_tvmsg_max_width">716.8000000000001dip</dimen>
+    <!-- 聊天输入控件的表情容器及更多容器的高度 -->
+    <dimen name="chat_input_view_more_panel_height">358.40000000000003dip</dimen>
+
+</resources>
+

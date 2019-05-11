@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.wujiuye.dao.MemorialdayDao">
+
+    <resultMap id="rmMemorialDay" type="MemorialDay">
+        <id column="id" property="id"/>
+        <result column="memorial_name" property="memorialName"/>
+        <result column="memorial_date" property="memorialDate"/>
+        <result column="priority" property="priority"/>
+        <result column="image" property="image"/>
+
+        <association property="lover" columnPrefix="l_" javaType="Lover">
+            <id column="id" property="id"/>
+        </association>
+
+    </resultMap>
+
+    <insert id="savaMemorialDay" useGeneratedKeys="true" keyProperty="id" parameterType="MemorialDay">
+        insert into tb_memorialday
+        (
+        memorial_name,memorial_date,priority,image,love_id
+        )values(
+        #{memorialName},#{memorialDate},#{priority},#{image},#{lover.id}
+        )
+    </insert>
+
+    <delete id="delMemorialDay">
+        delete from tb_memorialday where id = #{id} and love_id=#{loverId}
+    </delete>
+
+    <!-- 按照优先级排序 -->
+    <select id="getAllMemorialDay" resultMap="rmMemorialDay">
+        select m.*,
+        l.id as l_id
+        from tb_memorialday m
+        left join tb_love as l on m.love_id=l.id
+        where m.love_id=#{loverId} order by priority
+    </select>
+
+    <select id="getCount" resultType="int">
+        select count(*) from tb_memorialday where love_id=#{loverId}
+    </select>
+
+</mapper>

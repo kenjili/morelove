@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="wjy.weiai7lv.dao.ScenicAreaDao">
+
+    <resultMap id="rmScenicArea" type="ScenicArea">
+        <id column="id" property="id"/>
+        <result column="scenic_name" property="scenicName"/>
+        <result column="address" property="address"/>
+        <result column="location_x" property="locationX"/>
+        <result column="location_y" property="locationY"/>
+        <result column="summary" property="summary"/>
+
+        <!--地区映射-->
+        <association property="area" javaType="Area">
+            <id column="a_id" property="id"/>
+            <result column="a_name" property="areaName"/>
+            <association property="province" javaType="Province">
+                <id column="p_id" property="id"/>
+                <result column="p_name" property="proName"/>
+            </association>
+            <association property="city" javaType="City">
+                <id column="c_id" property="id"/>
+                <result column="c_name" property="cityName"/>
+            </association>
+        </association>
+
+        <!-- 关联图片 -->
+        <collection property="images" column="id" ofType="ScenicAreaImage" select="getImages"/>
+
+    </resultMap>
+
+    <!-- 图片的映射 -->
+    <resultMap id="rmImages" type="ScenicAreaImage">
+        <id column="id" property="id"/>
+        <result column="pic_url" property="picUrl"/>
+        <result column="pic_url_small" property="picUrlSmall"/>
+    </resultMap>
+
+    <!-- 获取照片列表,这个方法是给一对多映射时查询用的，不需要在接口中定义 -->
+    <select id="getImages" resultMap="rmImages" parameterType="int">
+        select id,pic_url,pic_url_small from tb_scenic_area_images where scenic_area_id=#{id}
+    </select>
+
+    <!--根据关键词模糊查询，景点名称、景点地址 -->
+    <select id="searchScenicArea" resultMap="rmScenicArea">
+    select s.*,
+    a.id as a_id,a.area_name as a_name,
+    c.id as c_id,c.city_name as c_name,
+    p.id as p_id,p.pro_name as p_name
+    from tb_scenic_area as s
+    left join tb_address_area a on a.id= s.area_id
+    left join tb_address_city c on c.id = a.city_id
+    left join tb_address_province p on p.id=a.pro_id
+    where s.scenic_name like '%${keyword}%'
+    or s.address like '%${keyword}%' limit #{start},#{count};
+    </select>
+
+
+    <select id="getScenicArea" resultMap="rmScenicArea">
+        select s.*,
+        a.id as a_id,a.area_name as a_name,
+        c.id as c_id,c.city_name as c_name,
+        p.id as p_id,p.pro_name as p_name
+        from tb_scenic_area as s
+        left join tb_address_area a on a.id= s.area_id
+        left join tb_address_city c on c.id = a.city_id
+        left join tb_address_province p on p.id=a.pro_id
+        where 1=1 limit #{start},#{count}
+    </select>
+
+
+    <!-- 根据地区查询 -->
+    <select id="searchScenicAreaWithArea" resultMap="rmScenicArea">
+    select s.*,
+    a.id as a_id,a.area_name as a_name,
+    c.id as c_id,c.city_name as c_name,
+    p.id as p_id,p.pro_name as p_name
+    from tb_scenic_area as s
+    left join tb_address_area a on a.id= s.area_id
+    left join tb_address_city c on c.id = a.city_id
+    left join tb_address_province p on p.id=a.pro_id
+    where a.id=#{area.id} limit #{start},#{count};
+    </select>
+
+    <select id="searchScenicAreaWithCity" resultMap="rmScenicArea">
+    select s.*,
+    a.id as a_id,a.area_name as a_name,
+    c.id as c_id,c.city_name as c_name,
+    p.id as p_id,p.pro_name as p_name
+    from tb_scenic_area as s
+    left join tb_address_area a on a.id= s.area_id
+    left join tb_address_city c on c.id = a.city_id
+    left join tb_address_province p on p.id=a.pro_id
+    where c.id=#{cityId} limit #{start},#{count};
+    </select>
+
+    <select id="searchScenicAreaWithPro" resultMap="rmScenicArea">
+    select s.*,
+    a.id as a_id,a.area_name as a_name,
+    c.id as c_id,c.city_name as c_name,
+    p.id as p_id,p.pro_name as p_name
+    from tb_scenic_area as s
+    left join tb_address_area a on a.id= s.area_id
+    left join tb_address_city c on c.id = a.city_id
+    left join tb_address_province p on p.id=a.pro_id
+    where p.id=#{proId} limit #{start},#{count};
+    </select>
+
+    <insert id="savaScenicAreaImage" parameterType="ScenicAreaImage">
+        insert into tb_scenic_area_images (
+          scenic_area_id,
+          pic_url_small,
+          pic_url)
+        values (
+          #{scenicArea.id},
+          #{picUrlSmall},
+          #{picUrl})
+    </insert>
+
+    <insert id="savaScenicArea" parameterType="ScenicArea">
+        insert into tb_scenic_area (
+          id,
+          area_id,
+          scenic_name,
+          address,
+          location_x,
+          location_y,
+          summary)
+        values (
+          #{id},
+          #{area.id},
+          #{scenicName},
+          #{address},
+          #{locationX},
+          #{locationY},
+          #{summary})
+    </insert>
+
+</mapper>

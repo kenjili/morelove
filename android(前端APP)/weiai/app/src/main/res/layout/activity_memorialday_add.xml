@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/navigation_bar" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/view_margin_left_right_20"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ly_menu_item_height">
+
+            <TextView
+                android:id="@+id/tvPriority"
+                android:layout_width="@dimen/icon_small_size"
+                android:layout_height="@dimen/icon_small_size"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/view_margin_left_right_10"
+                android:background="@drawable/memorial_priority_01"
+                android:tag="1" />
+
+            <EditText
+                android:id="@+id/tvName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/view_margin_left_right_10"
+                android:layout_marginRight="@dimen/view_margin_left_right_10"
+                android:layout_toRightOf="@id/tvPriority"
+                android:background="@null"
+                android:hint="@string/memorialday_name"
+                android:paddingLeft="@dimen/view_margin_left_right_10"
+                android:textSize="@dimen/font_size_context" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:layout_marginLeft="@dimen/view_margin_left_right_10"
+            android:layout_marginRight="@dimen/view_margin_left_right_10"
+            android:background="@color/activity_background_color" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ly_menu_item_height"
+            android:layout_marginLeft="@dimen/view_margin_left_right_10"
+            android:layout_marginRight="@dimen/view_margin_left_right_10"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvPriority01"
+                android:layout_width="@dimen/icon_small_size"
+                android:layout_height="@dimen/icon_small_size"
+                android:layout_centerVertical="true"
+                android:background="@drawable/memorial_priority_01"
+                android:gravity="center"
+                android:tag="1"
+                android:text="√"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/font_size_title" />
+
+            <TextView
+                android:id="@+id/tvPriority02"
+                android:layout_width="@dimen/icon_small_size"
+                android:layout_height="@dimen/icon_small_size"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/view_margin_left_right_20"
+                android:background="@drawable/memorial_priority_02"
+                android:gravity="center"
+                android:tag="2"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/font_size_title" />
+
+            <TextView
+                android:id="@+id/tvPriority03"
+                android:layout_width="@dimen/icon_small_size"
+                android:layout_height="@dimen/icon_small_size"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/view_margin_left_right_20"
+                android:background="@drawable/memorial_priority_03"
+                android:gravity="center"
+                android:tag="3"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/font_size_title" />
+
+            <TextView
+                android:id="@+id/tvPriority04"
+                android:layout_width="@dimen/icon_small_size"
+                android:layout_height="@dimen/icon_small_size"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/view_margin_left_right_20"
+                android:background="@drawable/memorial_priority_04"
+                android:gravity="center"
+                android:tag="4"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/font_size_title" />
+
+            <TextView
+                android:id="@+id/tvPriority05"
+                android:layout_width="@dimen/icon_small_size"
+                android:layout_height="@dimen/icon_small_size"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/view_margin_left_right_20"
+                android:background="@drawable/memorial_priority_05"
+                android:gravity="center"
+                android:tag="5"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/font_size_title" />
+
+            <TextView
+                android:id="@+id/tvPriority06"
+                android:layout_width="@dimen/icon_small_size"
+                android:layout_height="@dimen/icon_small_size"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/view_margin_left_right_20"
+                android:background="@drawable/memorial_priority_06"
+                android:gravity="center"
+                android:tag="6"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/font_size_title" />
+
+            <TextView
+                android:id="@+id/tvPriority07"
+                android:layout_width="@dimen/icon_small_size"
+                android:layout_height="@dimen/icon_small_size"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/view_margin_left_right_20"
+                android:background="@drawable/memorial_priority_07"
+                android:gravity="center"
+                android:tag="7"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/font_size_title" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ly_menu_item_height"
+        android:layout_marginTop="@dimen/view_margin_left_right_10"
+        android:background="@android:color/white">
+
+        <TextView
+            android:id="@+id/tv1"
+            style="@style/TextviewContextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:text="@string/memorialday_date"
+            android:paddingLeft="@dimen/view_margin_left_right_20" />
+
+        <TextView
+            android:id="@+id/tvDate"
+            style="@style/TextviewContextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:layout_toRightOf="@id/tv1"
+            android:gravity="center_vertical"
+            android:hint="@string/memorialday_select_date"
+            android:paddingLeft="@dimen/view_margin_left_right_20" />
+
+        <ImageView
+            android:layout_width="@dimen/icon_small_size"
+            android:layout_height="@dimen/icon_small_size"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/view_margin_left_right_10"
+            android:src="@mipmap/icon_next" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/ryImage"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ly_menu_item_height"
+        android:layout_marginTop="@dimen/view_margin_left_right_10"
+        android:background="@android:color/white">
+
+        <TextView
+            android:id="@+id/tvImg"
+            style="@style/TextviewContextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/view_margin_left_right_20"
+            android:text="@string/memorialday_bg_select_img" />
+
+        <ImageView
+            android:id="@+id/ivSelectImg"
+            android:layout_width="@dimen/icon_default_size"
+            android:layout_height="@dimen/icon_default_size"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/view_margin_left_right_20"
+            android:src="@mipmap/upload_addimage" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_width="match_parent"
+        style="@style/ButtonDefaultStyle"
+        android:layout_marginTop="@dimen/view_margin_top_buttom_superlarge"
+        android:layout_marginLeft="@dimen/view_margin_left_right_10"
+        android:layout_marginRight="@dimen/view_margin_left_right_10"
+        android:text="@string/memorialday_add"/>
+
+</LinearLayout>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.wujiuye.weiai7lv.dao.ItineraryDao">
+
+    <resultMap id="rmItinerary" type="Itinerary">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="details" property="details"/>
+        <result column="address" property="address"/>
+        <result column="create_datetime" property="createDatetime"/>
+        <result column="update_datetime" property="updateDatetime"/>
+        <!-- 一对一映射 -->
+        <association property="lover" columnPrefix="l_" resultMap="com.wujiuye.weiai7lv.dao.LoverDao.rmLover"/>
+        <!-- 映射到album的时候，由于结果映射交给了com.wujiuye.weiai7lv.dao.AlbumDao.rmAlbum处理，
+            又因为rmAlbum中添加了一对多映射，所以执行到rmAlbum的一对多映射collection时，
+             又回执行collection指定的select。所以使用一对一或一对多的映射的时候注意不要让其映射死循环了。-->
+        <association property="album" columnPrefix="al_" resultMap="com.wujiuye.weiai7lv.dao.AlbumDao.rmAlbum"/>
+        <association property="user" columnPrefix="u_" resultMap="com.wujiuye.weiai7lv.dao.UserDao.rmUser"/>
+    </resultMap>
+
+    <insert id="publicItinerary" parameterType="Itinerary" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_itinerary (
+          love_id,
+          user_id,
+          title,
+          details,
+          album_id,
+          address)
+        values (
+          #{lover.id},
+          #{user.id},
+          #{title},
+          #{details},
+          #{album.id},
+          #{address})
+    </insert>
+
+    <resultMap id="rmItinerary_" type="Itinerary">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="details" property="details"/>
+        <result column="address" property="address"/>
+        <result column="create_datetime" property="createDatetime"/>
+        <result column="update_datetime" property="updateDatetime"/>
+        <!-- 一对一映射 -->
+        <association property="lover" columnPrefix="l_" resultMap="com.wujiuye.weiai7lv.dao.LoverDao.rmLover"/>
+        <association property="album" columnPrefix="al_" javaType="Album">
+            <id column="id" property="id"/>
+            <result column="album_name" property="albumName"/>
+            <result column="create_datetime" property="createDatetime"/>
+            <result column="update_datetime" property="updateDatetime"/>
+            <!--  最多取三张图片就行了 -->
+            <collection property="photosList" column="id" ofType="Photos" select="getPhotos3"/>
+        </association>
+        <association property="user" columnPrefix="u_" resultMap="com.wujiuye.weiai7lv.dao.UserDao.rmUser"/>
+    </resultMap>
+
+    <!-- 根据创建时间降序排序，分页取 ,使用rmItinerary_是不想要在映射album时把所有的photos都取到,
+            (由于com.wujiuye.weiai7lv.dao.AlbumDao.rmAlbum添加了一对多映射并指定了select) -->
+    <select id="listItinerary" resultMap="rmItinerary_">
+        select i.*,
+        l.id as l_id,
+        u.id as u_id,
+        u.username as u_username,
+        al.id as al_id,
+        al.album_name as al_album_name
+        from tb_itinerary i
+        left join tb_love l on l.id=i.love_id
+        left join tb_user u on u.id=i.user_id
+        left join tb_album al on al.id=i.album_id
+        where i.love_id=#{loveId}
+        order by i.create_datetime desc limit #{start},#{length}
+    </select>
+
+    <select id="queryItinerary" resultMap="rmItinerary" parameterType="int">
+        select i.*,
+        l.id as l_id,
+        u.id as u_id,
+        u.username as u_username,
+        al.id as al_id,
+        al.album_name as al_album_name
+        from tb_itinerary i
+        left join tb_love l on l.id=i.love_id
+        left join tb_user u on u.id=i.user_id
+        left join tb_album al on al.id=i.album_id
+        where i.id=#{id}
+    </select>
+
+
+    <!-- 获取该相册下的最多三张照片,这个方法是给一对多映射时查询用的，不需要在接口中定义 -->
+    <select id="getPhotos3" resultMap="com.wujiuye.weiai7lv.dao.PhotosDao.rmPhotos" parameterType="int">
+        select id,img,img_thumb,img_details,create_datetime,update_datetime from tb_photos where album_id=#{id} limit 0,3;
+    </select>
+
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+
+    <!-- 打印日记 -->
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
+    <!-- 别名的配置 -->
+    <typeAliases>
+        <typeAlias type="com.wujiuye.weiai7lv.entity.User" alias="User"/>
+        <typeAlias type="com.wujiuye.weiai7lv.entity.Role" alias="Role"/>
+        <typeAlias type="com.wujiuye.weiai7lv.entity.Album" alias="Album"/>
+        <typeAlias type="com.wujiuye.weiai7lv.entity.MemorialDay" alias="MemorialDay"/>
+        <typeAlias type="com.wujiuye.weiai7lv.entity.Itinerary" alias="Itinerary"/>
+        <typeAlias type="com.wujiuye.weiai7lv.entity.Lover" alias="Lover"/>
+        <typeAlias type="com.wujiuye.weiai7lv.entity.Lovetime" alias="Lovetime"/>
+        <typeAlias type="com.wujiuye.weiai7lv.entity.Photos" alias="Photos"/>
+        <typeAlias type="com.wujiuye.weiai7lv.entity.AddressProvince" alias="Province"/>
+        <typeAlias type="com.wujiuye.weiai7lv.entity.AddressCity" alias="City"/>
+        <typeAlias type="com.wujiuye.weiai7lv.entity.AddressArea" alias="Area"/>
+        <typeAlias type="com.wujiuye.weiai7lv.entity.ScenicArea" alias="ScenicArea"/>
+        <typeAlias type="com.wujiuye.weiai7lv.entity.ScenicAreaImage" alias="ScenicAreaImage"/>
+    </typeAliases>
+
+    <!--<plugins>-->
+        <!--<plugin interceptor="com.wujiuye.weiai7lv.plugin.MyPlugin">-->
+            <!--<property name="my" value="ddddd"/>-->
+        <!--</plugin>-->
+    <!--</plugins>-->
+
+</configuration>

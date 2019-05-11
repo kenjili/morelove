@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/cache
+        http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+    <!-- 配置JedisPoolConfig实例,JedisPoolConfig是连接池的配置 -->
+    <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="${redis.maxTotal}" />
+        <property name="maxIdle" value="${redis.maxIdle}" />
+        <property name="minIdle" value="${redis.minIdle}"/>
+        <property name="maxWaitMillis" value="${redis.maxWaitMillis}" />
+        <property name="testOnBorrow" value="${redis.testOnBorrow}"/>
+    </bean>
+
+    <!-- 配置JedisConnectionFactory，连接池工厂 -->
+    <bean id="jedisConnectionFactory"
+          class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <!-- 连接信息 -->
+        <property name="hostName" value="${redis.host}" />
+        <property name="port" value="${redis.port}" />
+        <!-- 数据库 -->
+        <property name="database" value="${redis.dbIndex}" />
+        <!-- 使用连接池 -->
+        <property name="usePool" value="true"/>
+        <property name="poolConfig" ref="poolConfig" />
+    </bean>
+
+    <!-- key序列化策略，class需要实现RedisSerializer接口 -->
+    <bean id="keySerializer" class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+    <!-- value序列化策略，class需要实现RedisSerializer接口 -->
+    <bean id="valueSerializer" class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
+
+    <!-- 配置操作redis的RedisTemplate对象
+        spring-data-redis封装了RedisTemplate对象来进行对Redis的各种操作，它支持所有的Redis原生的api。
+        RedisUtils中就是用这个对象来进行数据的写入和查询操作的。
+            redisTemplate.boundValueOps();//操作Object类型数据
+            redisTemplate.boundHashOps();//操作hash类型数据
+            redisTemplate.boundListOps();//操作list类型数据
+            ......
+     -->
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+        <property name="connectionFactory" ref="jedisConnectionFactory"/>
+        <property name="keySerializer" ref="keySerializer"/>
+        <property name="valueSerializer" ref="valueSerializer"/>
+        <!-- map类型数据序列号策略 -->
+        <property name="hashKeySerializer" ref="keySerializer"/>
+        <property name="hashValueSerializer" ref="valueSerializer"/>
+        <!-- 配置是否支持事务 -->
+        <property name="enableTransactionSupport" value="true"/>
+    </bean>
+
+
+    <!-- 使用spring cache框架提供的注解方式实现redis缓存管理，0业务代码侵入 -->
+    <!-- 配置一个缓存管理者，使用spring-data-redis提供的RedisCacheManager类配置，
+        RedisCacheManager实现了spring cache提供的AbstractCacheManager接口 -->
+    <bean id="redisCacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">
+        <constructor-arg name="redisOperations" ref="redisTemplate" />
+        <!-- 缓存名称，需在@Cacheable注解配置value指定缓存名称。
+            比如我们缓存一个用户的信息的时候已经使用用户名作为key了，为什么还要指定一个缓存名称，思考一下。
+            当你在客户端发送请求，该请求访问到了某业务类的一个被@Cacheable注解声明的方法，
+            比如这个方法实现的功能是根据传进来的usernmae参数获取一个User对象返回，
+            而@Cacheable配置了value="userCache",key="#username"，
+            当这个方法执行完成后，你打开终端使用redis-cli执行keys *指令，
+            你会看到有一个key为"userCache"和一个跟方法参数username的值相同的key，
+            使用type userCache可以查看到该key保存的数据是zset类型的，即有序集合。
+            而另外一个key才是缓存方法返回的User对象的。当多个不同用户访问到该方法时，
+            userCache中所存储的就是这些用户的key，当我们想要清空由这个方法所缓存
+            的用户信息的时候就可以获取userCache所保存的缓存用户的key来删除缓存。
+            建议缓存的数据类型相同的使用同一个cacheName，而不是每个方法使用一个cacheName，更不应该使用方法名作为cacheName。
+         -->
+        <constructor-arg name="cacheNames">
+            <set>
+                <value>userCache</value>
+                <value>rolesCache</value>
+                <value>movieBoxOffice</value>
+            </set>
+        </constructor-arg>
+        <!-- 配置默认缓存过期时间
+            比如expires中没有为cacheName="userCache"配置过期时间的，
+            当@Cacheable的value等于"userCache"，key="username111"的时候，就会设置缓存key="username111"的过期时间为defaultExpiration设置的时间。
+         -->
+        <property name="defaultExpiration" value="${redis.expiration}" />
+        <!-- 配置缓存名称对应的key的过期时间 -->
+        <property name="expires">
+            <map>
+                <!-- 缓存名为userCache的过期时间为一个小时 -->
+                <entry key="userCache" value="3600"/>
+            </map>
+        </property>
+    </bean>
+
+
+    <!--开启缓存注解扫描功能，并配置id为redisCacheManager的缓存管理者 -->
+    <cache:annotation-driven cache-manager="redisCacheManager"/>
+
+</beans>

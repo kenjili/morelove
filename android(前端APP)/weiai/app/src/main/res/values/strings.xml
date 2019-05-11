@@ -1,0 +1,75 @@
+<resources>
+    <string name="app_name">微爱</string>
+    <string name="app_signature">微爱为您记录所有感动的瞬间！</string>
+    <string name="app_version">版本：V </string>
+
+    <string name="login">登录</string>
+    <string name="login_hint_username">用户名</string>
+    <string name="login_hint_password">密 码</string>
+    <string name="login_forget_password">忘记密码？</string>
+    <string name="regist">注册</string>
+    <string name="birthday">出生日期</string>
+    <string name="sex">性别</string>
+    <string name="sex_man">男</string>
+    <string name="sex_women">女</string>
+    <string name="phone_number">手机号码</string>
+    <string name="regist_username_details">*用户名为2～6个中文字符</string>
+    <string name="regist_password_details">*密码为6～18个字母或数字</string>
+    <string name="regist_realname">真实姓名</string>
+    <string name="regist_details">*使用手机号注册是为了后期如果忘记密码可以通过手机号码找回！</string>
+    <string name="reset_password">重置密码</string>
+    <string name="send_validation_code">获取验证码</string>
+    <string name="validation_code">验证码</string>
+
+
+    <string name="lover_bind">表白她/他</string>
+    <string name="lover_username">埋藏在心底那个谁的用户名</string>
+    <string name="lover_button_bind">向她/他表白</string>
+    <string name="lover_wait_other_enter">等待对方接受</string>
+    <string name="lover_enter_bind">接受对方的表白</string>
+
+    <string name="ebm_left_buttom_title">时光机</string>
+    <string name="ebm_mid_buttom_title">侣行记</string>
+    <string name="ebm_right_buttom_title">晒一晒</string>
+
+    <string name="find_title_jindian">景点推荐</string>
+    <string name="find_title_video">电影票房</string>
+
+    <string name="toolbar_title_home">动态</string>
+    <string name="toolbar_title_find">发现</string>
+    <string name="toolbar_title_me">我们</string>
+
+
+    <string name="women_lover_znr">纪念日</string>
+    <string name="women_lover_dacard">恋爱打卡</string>
+    <string name="women_lover_aqshu">爱情数</string>
+    <string name="women_lover_video">看过的电影</string>
+
+
+    <string name="public_pop_dialog_menu_lovetime">恋爱时光</string>
+    <string name="public_pop_dialog_menu_itinerary">侣行日记</string>
+    <string name="public_pop_dialog_cancel">取消</string>
+    <string name="public_submit">发表</string>
+    <string name="public_lovetime_hint_message">说点什么吧...</string>
+    <string name="public_lovetime_sm">私密（情侣间可见）</string>
+    <string name="public_lovetime_gk">公开（全部用户可见）</string>
+    <string name="public_itinerary_title">日记标题</string>
+    <string name="public_itinerary_context">日记内容</string>
+    <string name="public_itinerary_address">选择地点</string>
+
+    <string name="scenicarea_search_hint">搜索景点</string>
+    <string name="click_album_preview_model">点击图片预览原图</string>
+    <string name="activity_title_ablum_preview">相片预览</string>
+    <string name="chat_input_send">发送</string>
+
+    <string name="activity_title_memorialday">纪念日</string>
+    <string name="activity_title_memorialday_add">添加纪念日</string>
+    <string name="memorialday_add">添加</string>
+    <string name="memorialday_name">点击这里输入纪念日内容</string>
+    <string name="memorialday_date">日期</string>
+    <string name="memorialday_delete">删除</string>
+    <string name="memorialday_select_date">选择日期</string>
+    <string name="memorialday_bg_select_img">选择纪念日图片</string>
+
+
+</resources>

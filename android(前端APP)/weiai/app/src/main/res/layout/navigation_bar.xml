@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/app_theme_color"
+    android:layout_height="@dimen/navigation_bar_height">
+
+
+    <!-- 注册页面使用 -->
+    <TextView
+        android:id="@+id/tvForgetPassword"
+        android:visibility="gone"
+        android:gravity="center_vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="@dimen/view_margin_left_right_10"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textSize="@dimen/font_size_title"
+        android:textColor="@android:color/white"
+        android:text="@string/login_forget_password"/>
+
+    <TextView
+        android:id="@+id/tvGotoRegist"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginRight="@dimen/view_margin_left_right_10"
+        app:layout_constraintRight_toRightOf="parent"
+        android:gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textSize="@dimen/font_size_title"
+        android:textColor="@android:color/white"
+        android:text="@string/regist"/>
+
+    <!-- end 注册页面使用 -->
+
+    <TextView
+        android:id="@+id/navTitle"
+        style="@style/TextviewTitleStyle"
+        android:textColor="@android:color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="@string/app_name"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"/>
+
+    <ImageView
+        android:id="@+id/leftButton"
+        android:src="@mipmap/img_back"
+        android:layout_width="@dimen/icon_default_size"
+        android:layout_height="@dimen/icon_default_size"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="@dimen/view_margin_left_right_10"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        android:onClick="doBack"/>
+
+
+    <!-- 发布按钮 -->
+    <ImageView
+        android:id="@+id/publicButton"
+        android:src="@mipmap/icon_public"
+        android:layout_width="@dimen/icon_default_size"
+        android:layout_height="@dimen/icon_default_size"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="@dimen/view_margin_left_right_10"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        android:visibility="gone"/>
+
+    <!-- 添加按钮 -->
+    <TextView
+        android:id="@+id/tvAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="添加"
+        android:visibility="gone"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/font_size_title"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="@dimen/view_margin_left_right_10"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.5"/>
+
+</android.support.constraint.ConstraintLayout>
