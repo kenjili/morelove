@@ -65,11 +65,11 @@ public class MoreLoveSwagger2 implements WebMvcConfigurer {
                 .select()
                 //配置了api文件也就是controller包的路径，不然生成的文档扫描不到接口。
                 .apis(MoreLoveSwagger2.basePackage(
-                        "com.wujiuye.controller," +
-                        "com.wujiuye.album.controller," +
-                        "com.wujiuye.business.controller," +
-                        "com.wujiuye.found.controller," +
-                        "com.wujiuye.lovetime.controller"))
+                        "wujiuye.morelove.api.controller," +
+                        "wujiuye.morelove.album.controller," +
+                        "wujiuye.morelove.business.controller," +
+                        "wujiuye.morelove.found.controller," +
+                        "wujiuye.morelove.lovetime.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .enable(true);

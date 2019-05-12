@@ -1,12 +1,11 @@
 package wujiuye.morelove.business.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import wujiuye.morelove.business.service.LoverClockInService;
 import wujiuye.morelove.common.exception.ResponseResultConfig;
 import wujiuye.morelove.common.exception.WebResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.annotation.Resource;
 
 /**
  * @author wujiuye
@@ -16,7 +15,7 @@ import javax.annotation.Resource;
 @RestController
 public class LoverClockInController {
 
-    @Resource
+    @Autowired
     private LoverClockInService loverClockInService;
 
     /**

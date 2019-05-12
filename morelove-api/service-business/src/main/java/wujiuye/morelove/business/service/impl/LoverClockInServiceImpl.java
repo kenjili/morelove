@@ -20,7 +20,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -30,13 +29,13 @@ import java.util.List;
 @Service
 public class LoverClockInServiceImpl implements LoverClockInService {
 
-    @Resource
+    @Autowired
     private UserDao userDao;
-    @Resource
+    @Autowired
     private LoverDao loverDao;
-    @Resource
+    @Autowired
     private CardSubjectDao cardSubjectDao;
-    @Resource
+    @Autowired
     private ClockInRecordDao clockInRecordDao;
     @Autowired
     private WebConstantConfig webConstantConfig;
