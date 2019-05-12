@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.LinkedBlockingDeque;
 
 import butterknife.BindView;
 import wjy.morelove.App;
@@ -40,7 +42,7 @@ public class ChatMessageActivity extends BaseActivity implements ChatServerManag
     @BindView(R.id.ryMsg)
     protected RecyclerView ryMsg;
     private ChatMessageAdapter messageAdapter;
-    private LinkQueue<Message> messageLinkQueue = new LinkQueue<>();
+    private final Queue<Message> messageLinkQueue = new LinkedBlockingDeque<>();
 
     @BindView(R.id.mChatInput)
     protected ChatInputView mChatInput;
@@ -118,7 +120,7 @@ public class ChatMessageActivity extends BaseActivity implements ChatServerManag
                 msg.setMsgType(0);
                 msg.setSendState(0);//发送中
                 messageAdapter.addToEndMessage(msg);
-                messageLinkQueue.enqueue(msg);//存到发送队列
+                messageLinkQueue.add(msg);//存到发送队列
                 //发送
                 MessageRequestPacket messageRequestPacket = new MessageRequestPacket();
                 messageRequestPacket.setToUserName(toUser.getUsername());
@@ -151,13 +153,11 @@ public class ChatMessageActivity extends BaseActivity implements ChatServerManag
 
     @Override
     public void onConnectDeath() {
-        if (messageLinkQueue != null) {
-            while (messageLinkQueue.peek() != null) {
-                Message message = messageLinkQueue.dnqueue();
-                message.setSendState(2);
-            }
-            messageAdapter.notifyDataSetChanged();
+        while (messageLinkQueue.peek() != null) {
+            Message message = messageLinkQueue.poll();
+            message.setSendState(2);
         }
+        messageAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -172,16 +172,20 @@ public class ChatMessageActivity extends BaseActivity implements ChatServerManag
 
     @Override
     public void onSendMsgError(String errorMsg) {
-        Message message = messageLinkQueue.dnqueue();
-        message.setSendState(2);
-        messageAdapter.notifyDataSetChanged();
+        if (messageLinkQueue.peek() != null) {
+            Message message = messageLinkQueue.poll();
+            message.setSendState(2);
+            messageAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override
     public void onSendMsgSuccess() {
-        Message message = messageLinkQueue.dnqueue();
-        message.setSendState(1);
-        messageAdapter.notifyDataSetChanged();
+        if (messageLinkQueue.peek() != null) {
+            Message message = messageLinkQueue.poll();
+            message.setSendState(1);
+            messageAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override
