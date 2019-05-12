@@ -31,7 +31,7 @@ import static wjy.morelove.nettyclient.protocol.command.Command.REQUEST_STATE;
  */
 public class PacketCodeManager {
 
-    public static final byte[] MAGIC_NUMBER = new byte[]{'w','e','i','a','i'};//魔数
+    public static final byte[] MAGIC_NUMBER = new byte[]{'j','i','u','y','e'};//魔数
     public static final PacketCodeManager INSTANCE = new PacketCodeManager();//单例
 
     //key为命令，value为包类型

@@ -84,7 +84,13 @@ public class ChatClient {
                     }
                 });
 
-        connect(bootstrap, HOST, PORT, MAX_RETRY);
+        try {
+            connect(bootstrap, HOST, PORT, MAX_RETRY);
+        }catch (Exception e){
+            if(onConnectServerListener!=null) {
+                onConnectServerListener.onConnectFail();
+            }
+        }
     }
 
     private void connect(Bootstrap bootstrap, String host, int port, int retry) {

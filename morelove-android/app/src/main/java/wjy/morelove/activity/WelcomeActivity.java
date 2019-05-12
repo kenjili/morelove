@@ -93,6 +93,7 @@ public class WelcomeActivity extends BaseActivity {
                 public void onSuccess(String data) {
                     while (jishi > 0) {
                         try {
+                            mHandler.sendEmptyMessage(0x00);
                             Thread.sleep(1000);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -106,6 +107,7 @@ public class WelcomeActivity extends BaseActivity {
                 public void onError(ApiException ex) {
                     while (jishi > 0) {
                         try {
+                            mHandler.sendEmptyMessage(0x00);
                             Thread.sleep(1000);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
