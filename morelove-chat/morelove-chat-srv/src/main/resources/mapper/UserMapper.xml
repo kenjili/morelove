@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="wujiuye.morelove.chat.srv.dao.UserDao">
+
+    <resultMap id="userResultMap" type="wujiuye.morelove.chat.packet.bean.User">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+    </resultMap>
+
+    <!--resultMap指定映射规则-->
+    <select id="getUserByUsername" parameterType="String" resultMap="userResultMap">
+        select * from tb_user where username = #{username}
+    </select>
+
+</mapper>

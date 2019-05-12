@@ -27,7 +27,7 @@ public class MoreLoveApplication {
 //        stuHandlerMethod(applicationContext);
     }
 
-    private static void stuHandlerMethod(ApplicationContext applicationContext){
+    private static void stuHandlerMethod(ApplicationContext applicationContext) {
         /**
          * 处理器方法
          * 知识点补充：
@@ -58,7 +58,7 @@ public class MoreLoveApplication {
                     //方法名，方法参数类型
                     .getMethod("doLogout", null/*String.class, Integer.class, Integer.class, Integer.class, Integer.class*/);
             HandlerMethod handlerMethod = new HandlerMethod(indexController, indexMethod);
-             handlerMethod.getMethod().setAccessible(true);//设置方法为可访问如果是私有的方法
+            handlerMethod.getMethod().setAccessible(true);//设置方法为可访问如果是私有的方法
             if (indexMethod.getReturnType() == WebResult.class) {
                 //调用目标bean的目标方法
                 Object result = handlerMethod.getMethod().invoke(handlerMethod.getBean(), null/*"广州", null, null, null, null*/);

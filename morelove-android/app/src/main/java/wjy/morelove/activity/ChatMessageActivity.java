@@ -123,7 +123,7 @@ public class ChatMessageActivity extends BaseActivity implements ChatServerManag
                 MessageRequestPacket messageRequestPacket = new MessageRequestPacket();
                 messageRequestPacket.setToUserName(toUser.getUsername());
                 messageRequestPacket.setMessage(message);
-                ChatServerManager.getManager().getWeiAiChatClient().getChannel().writeAndFlush(messageRequestPacket);
+                ChatServerManager.getManager().getChatClient().getChannel().writeAndFlush(messageRequestPacket);
             }
 
             @Override

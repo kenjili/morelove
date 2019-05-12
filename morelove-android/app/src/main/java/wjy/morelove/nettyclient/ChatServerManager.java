@@ -12,7 +12,7 @@ import io.netty.channel.Channel;
 
 import wjy.morelove.App;
 import wjy.morelove.bean.Message;
-import wjy.morelove.nettyclient.client.WeiAiChatClient;
+import wjy.morelove.nettyclient.client.ChatClient;
 import wjy.morelove.nettyclient.client.handler.BaseHandler;
 import wjy.morelove.nettyclient.protocol.request.LoginRequestPacket;
 import wjy.morelove.nettyclient.protocol.response.LoginResponsePacket;
@@ -41,10 +41,10 @@ public class ChatServerManager {
         this.onReceiverMessageListener = onReceiverMessageListener;
     }
 
-    private WeiAiChatClient weiAiChatClient;
+    private ChatClient chatClient;
 
     private ChatServerManager() {
-        this.weiAiChatClient = new WeiAiChatClient(App.getApp(), new WeiAiChatClient.OnConnectServerListener() {
+        this.chatClient = new ChatClient(App.getApp(), new ChatClient.OnConnectServerListener() {
             @Override
             public void onConnectSuccess(Channel channel) {
                 Log.d("初始化聊天服务长连接", "连接成功....");
@@ -79,20 +79,20 @@ public class ChatServerManager {
      * @return
      */
     public boolean isConnectChatServer() {
-        return weiAiChatClient.getChannel() != null &&
-                weiAiChatClient.getChannel().isActive();
+        return chatClient.getChannel() != null &&
+                chatClient.getChannel().isActive();
     }
 
     /**
      * 初始化聊天服务长连接
      */
     public void initChatServerConnect() {
-        this.weiAiChatClient.connectServier();
+        this.chatClient.connectServier();
     }
 
 
-    public WeiAiChatClient getWeiAiChatClient() {
-        return weiAiChatClient;
+    public ChatClient getChatClient() {
+        return chatClient;
     }
 
     /**
@@ -108,7 +108,7 @@ public class ChatServerManager {
         loginRequestPacket.setUserName(App.getApp().getUserLoginInfo().getUsername());
         loginRequestPacket.setPassword("notpwd");//无需密码
         // 发送登录数据包
-        this.weiAiChatClient.getChannel().writeAndFlush(loginRequestPacket);
+        this.chatClient.getChannel().writeAndFlush(loginRequestPacket);
     }
 
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {

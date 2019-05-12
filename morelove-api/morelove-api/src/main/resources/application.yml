@@ -35,11 +35,3 @@ spring:
 #    restart:
 #      #是否启用热部署，默认已经是true了
 #      enabled: true
-
-#mybatis的配置
-mybatis:
-  #映射文件路径
-  config-location: classpath:mapper/*.xml
-  #类型别名包
-  type-aliases-package: com.wujiuye.pojo
-

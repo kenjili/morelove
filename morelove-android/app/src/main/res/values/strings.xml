@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">微爱</string>
-    <string name="app_signature">微爱为您记录所有感动的瞬间！</string>
+    <string name="app_name">More Love</string>
+    <string name="app_signature">用心做最懂情侣的应用！</string>
     <string name="app_version">版本：V </string>
 
     <string name="login">登录</string>

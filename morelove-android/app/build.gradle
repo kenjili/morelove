@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "wjy.weiai"
+        applicationId "wjy.morelove"
         //最小兼容到android 6.0
         minSdkVersion 23
         //编译版本android 8.1

@@ -1,4 +1,4 @@
-package wjy.weiai.service;
+package wjy.morelove.service;
 
 //上传进度改变通知
 interface AIDLUploadPublic {

@@ -304,7 +304,7 @@
 
 
     <build>
-        <finalName>weiai</finalName>
+        <finalName>morelove-api-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

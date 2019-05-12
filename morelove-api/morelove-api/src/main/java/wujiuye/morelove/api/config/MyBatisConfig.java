@@ -17,9 +17,8 @@ import java.beans.PropertyVetoException;
 
 @Configuration
 //配置mapper接口扫描,扫描Mybatis的Mapper接口,指定sqlSessionFactory引用
-@MapperScan(basePackages = "com.wujiuye.dao", sqlSessionFactoryRef = "sqlSessionFactory")
+@MapperScan(basePackages = "wujiuye.morelove.dao", sqlSessionFactoryRef = "sqlSessionFactory")
 public class MyBatisConfig {
-
 
     @Value("${spring.datasource.driver-class-name}")
     private String driverClass;
@@ -38,11 +37,6 @@ public class MyBatisConfig {
     private Integer maxWait;
     @Value("${spring.datasource.druid.min-idle}")
     private Integer minIdle;
-
-    @Value("${mybatis.config-location}")
-    private String mybatisConfigLocation;
-    @Value("${mybatis.type-aliases-package}")
-    private String typeAliasesPackage;
 
     /**
      * 配置数据源
@@ -76,9 +70,9 @@ public class MyBatisConfig {
     public SqlSessionFactory sqlSessionFactory(@Qualifier("dataSource") DataSource dataSource) throws Exception {
         SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
         sqlSessionFactory.setDataSource(dataSource);
-        sqlSessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(mybatisConfigLocation));
-//        sqlSessionFactory.setTypeAliasesPackage(typeAliasesPackage);
-        sqlSessionFactory.setConfigLocation(new PathMatchingResourcePatternResolver().getResource("classpath:mybatis/mybatis-config.xml"));
+        sqlSessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*.xml"));//mapper文件
+        sqlSessionFactory.setTypeAliasesPackage("wujiuye.morelove.pojo");//别名
+        sqlSessionFactory.setConfigLocation(new PathMatchingResourcePatternResolver().getResource("classpath:mybatis/mybatis-config.xml"));//配置文件
         return sqlSessionFactory.getObject();
     }
 
