@@ -1,11 +1,6 @@
 package wujiuye.morelove.chat.protocol.serialize;
 
-
-import wujiuye.morelove.chat.protocol.serialize.impl.JSONSerializer;
-
 public interface Serializer {
-
-    Serializer DEFAULT = new JSONSerializer();
 
     /**
      * 序列化算法

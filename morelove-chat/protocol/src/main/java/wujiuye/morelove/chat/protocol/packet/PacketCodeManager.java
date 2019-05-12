@@ -22,13 +22,14 @@ public class PacketCodeManager {
     private final Map<Byte, Class<? extends Packet>> packetTypeMap;
     //key为序列化算法名称，value为序列化算法实现类
     private final Map<Byte, Serializer> serializerMap;
+    //序列化算法
+    private Serializer useSerialize = new JSONSerializer();
 
 
     private PacketCodeManager() {
         packetTypeMap = new HashMap<>();
         serializerMap = new HashMap<>();
-        Serializer serializer = new JSONSerializer();//json序列号算法
-        serializerMap.put(serializer.getSerializerAlogrithm(), serializer);
+        serializerMap.put(this.useSerialize.getSerializerAlogrithm(), this.useSerialize);
     }
 
     /**
@@ -39,12 +40,12 @@ public class PacketCodeManager {
     public void init(IRegistPacket registPacket) {
         if (registPacket != null) {
             packetTypeMap.put(Command.REQUEST_STATE, registPacket.registPacket(Command.REQUEST_STATE));//响应请求状态的数据包
-            packetTypeMap.put(Command.HEARTBEAT_REQUEST, registPacket.registPacket(Command.REQUEST_STATE));//心跳请求包
-            packetTypeMap.put(Command.HEARTBEAT_RESPONSE, registPacket.registPacket(Command.REQUEST_STATE));//心跳响应包
-            packetTypeMap.put(Command.LOGIN_REQUEST, registPacket.registPacket(Command.REQUEST_STATE));//登录数据包
-            packetTypeMap.put(Command.LOGIN_RESPONSE, registPacket.registPacket(Command.REQUEST_STATE));//登录响应数据包
-            packetTypeMap.put(Command.MESSAGE_REQUEST, registPacket.registPacket(Command.REQUEST_STATE));//接收的消息数据包
-            packetTypeMap.put(Command.MESSAGE_RESPONSE, registPacket.registPacket(Command.REQUEST_STATE));//响应的消息数据包
+            packetTypeMap.put(Command.HEARTBEAT_REQUEST, registPacket.registPacket(Command.HEARTBEAT_REQUEST));//心跳请求包
+            packetTypeMap.put(Command.HEARTBEAT_RESPONSE, registPacket.registPacket(Command.HEARTBEAT_RESPONSE));//心跳响应包
+            packetTypeMap.put(Command.LOGIN_REQUEST, registPacket.registPacket(Command.LOGIN_REQUEST));//登录数据包
+            packetTypeMap.put(Command.LOGIN_RESPONSE, registPacket.registPacket(Command.LOGIN_RESPONSE));//登录响应数据包
+            packetTypeMap.put(Command.MESSAGE_REQUEST, registPacket.registPacket(Command.MESSAGE_REQUEST));//接收的消息数据包
+            packetTypeMap.put(Command.MESSAGE_RESPONSE, registPacket.registPacket(Command.MESSAGE_RESPONSE));//响应的消息数据包
         }
     }
 
@@ -57,14 +58,14 @@ public class PacketCodeManager {
      */
     public void encode(ByteBuf byteBuf, Packet packet) {
         // 1. 序列化 java 对象
-        byte[] bytes = Serializer.DEFAULT.serialize(packet);
+        byte[] bytes = this.useSerialize.serialize(packet);
         //对消息内容加密
         bytes = Base64.getEncoder().encode(bytes);
         // 2. 实际编码过程
         //魔术+一个字节的版本号+一个字节的序列化算法+一个字节的指令+四个字节的数据长度+实际数据
         byteBuf.writeBytes(MAGIC_NUMBER);
         byteBuf.writeByte(packet.getVersion());//写入版本号
-        byteBuf.writeByte(Serializer.DEFAULT.getSerializerAlogrithm());//写入序列化算法
+        byteBuf.writeByte(this.useSerialize.getSerializerAlogrithm());//写入序列化算法
         byteBuf.writeByte(packet.getCommand());//写入命令、协议
         byteBuf.writeInt(bytes.length);//写入序列化数据的长度
         byteBuf.writeBytes(bytes);//写入序列化数据

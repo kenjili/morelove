@@ -12,12 +12,21 @@ import wujiuye.morelove.chat.client.handler.HeartBeatTimerHandler;
 import wujiuye.morelove.chat.client.handler.LoginResponseHandler;
 import wujiuye.morelove.chat.client.handler.MessageResponseHandler;
 import wujiuye.morelove.chat.client.handler.StateResponseHandler;
+import wujiuye.morelove.chat.packet.request.HeartBeatRequestPacket;
+import wujiuye.morelove.chat.packet.response.HeartBeatResponsePacket;
+import wujiuye.morelove.chat.packet.response.LoginResponsePacket;
+import wujiuye.morelove.chat.packet.response.MessageResponsePacket;
+import wujiuye.morelove.chat.packet.response.RequestStatePacket;
+import wujiuye.morelove.chat.protocol.command.Command;
 import wujiuye.morelove.chat.protocol.handler.IMIdleStateHandler;
 import wujiuye.morelove.chat.protocol.handler.PacketDecoder;
 import wujiuye.morelove.chat.protocol.handler.PacketEncoder;
 import wujiuye.morelove.chat.protocol.handler.Spliter;
 import wujiuye.morelove.chat.packet.request.LoginRequestPacket;
 import wujiuye.morelove.chat.packet.request.MessageRequestPacket;
+import wujiuye.morelove.chat.protocol.packet.IRegistPacket;
+import wujiuye.morelove.chat.protocol.packet.Packet;
+import wujiuye.morelove.chat.protocol.packet.PacketCodeManager;
 
 import java.util.Date;
 import java.util.Scanner;
@@ -41,7 +50,6 @@ public class NettyClient {
 
     public static void main(String[] args) {
         NioEventLoopGroup workerGroup = new NioEventLoopGroup();
-
         Bootstrap bootstrap = new Bootstrap();
         bootstrap
                 .group(workerGroup)
@@ -67,6 +75,7 @@ public class NettyClient {
                     }
                 });
 
+        registPacket();
         connect(bootstrap, HOST, PORT, MAX_RETRY);
     }
 
@@ -93,8 +102,8 @@ public class NettyClient {
     private static void startLogin(final Channel channel) {
         System.out.println("正在登录...");
         LoginRequestPacket loginRequestPacket = new LoginRequestPacket();
-        loginRequestPacket.setUserName("春玲");
-        loginRequestPacket.setPassword("123456");
+        loginRequestPacket.setUserName("就业");
+        loginRequestPacket.setPassword("wjy123456");
         // 发送登录数据包
         channel.writeAndFlush(loginRequestPacket);
 
@@ -118,5 +127,30 @@ public class NettyClient {
             messageRequestPacket.setMessage(sc.next());
             channel.writeAndFlush(messageRequestPacket);
         }
+    }
+
+    private static void registPacket(){
+        PacketCodeManager.INSTANCE.init(new IRegistPacket() {
+            @Override
+            public Class<? extends Packet> registPacket(Byte command) {
+                if (command.equals(Command.HEARTBEAT_REQUEST)) {
+                    return HeartBeatRequestPacket.class;
+                } else if (command.equals(Command.HEARTBEAT_RESPONSE)) {
+                    return HeartBeatResponsePacket.class;
+                } else if (command.equals(Command.LOGIN_REQUEST)) {
+                    return LoginRequestPacket.class;
+                } else if (command.equals(Command.LOGIN_RESPONSE)) {
+                    return LoginResponsePacket.class;
+                } else if (command.equals(Command.MESSAGE_REQUEST)) {
+                    return MessageRequestPacket.class;
+                } else if (command.equals(Command.MESSAGE_RESPONSE)) {
+                    return MessageResponsePacket.class;
+                } else if (command.equals(Command.REQUEST_STATE)) {
+                    return RequestStatePacket.class;
+                }else{
+                    return null;
+                }
+            }
+        });
     }
 }
