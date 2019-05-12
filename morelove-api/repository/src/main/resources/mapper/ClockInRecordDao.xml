@@ -13,7 +13,7 @@
         update_datetime  as updateDatetime
     </sql>
 
-    <insert id="clockIn" parameterType="com.wujiuye.morelove.pojo.ClockInRecord">
+    <insert id="clockIn" parameterType="wujiuye.morelove.pojo.ClockInRecord">
         insert into tb_clockin
         (subject_id,user_id)
         values
@@ -22,15 +22,15 @@
         )
     </insert>
 
-    <resultMap id="MuliteMap" type="com.wujiuye.morelove.pojo.dto.ClockInHistoryDto">
+    <resultMap id="MuliteMap" type="wujiuye.morelove.pojo.dto.ClockInHistoryDto">
         <id column="id" property="id"/>
         <result column="love_id" property="loveId"/>
         <result column="ci_date" property="ciDate"/>
-        <association property="subject" columnPrefix="s_" javaType="com.wujiuye.morelove.pojo.dto.ClockInHistoryDto$SubjectDto">
+        <association property="subject" columnPrefix="s_" javaType="wujiuye.morelove.pojo.dto.ClockInHistoryDto$SubjectDto">
             <id column="subject_id" property="subjectId"/>
             <result column="name" property="name"/>
         </association>
-        <association property="user" columnPrefix="u_" javaType="com.wujiuye.morelove.pojo.dto.ClockInHistoryDto$UserDto">
+        <association property="user" columnPrefix="u_" javaType="wujiuye.morelove.pojo.dto.ClockInHistoryDto$UserDto">
             <id column="user_id" property="id"/>
             <result column="username" property="username"/>
             <result column="head_thumb" property="headThumb"/>
@@ -62,7 +62,7 @@
         limit #{offerset},#{limit}
     </select>
 
-    <select id="selectByDate" resultType="com.wujiuye.morelove.pojo.ClockInRecord">
+    <select id="selectByDate" resultType="wujiuye.morelove.pojo.ClockInRecord">
         select
         <include refid="Base_Cell_List"/>
         from tb_clockin

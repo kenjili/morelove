@@ -91,12 +91,26 @@ public class WelcomeActivity extends BaseActivity {
 
                 @Override
                 public void onSuccess(String data) {
+                    while (jishi > 0) {
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     startActivity(MainActivity.class);
                     WelcomeActivity.this.finish();
                 }
 
                 @Override
                 public void onError(ApiException ex) {
+                    while (jishi > 0) {
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     startActivity(LoginActivity.class);
                     WelcomeActivity.this.finish();
                 }

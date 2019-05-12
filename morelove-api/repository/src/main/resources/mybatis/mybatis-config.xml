@@ -14,19 +14,19 @@
 
     <!-- 别名的配置 -->
     <typeAliases>
-        <typeAlias type="com.wujiuye.morelove.pojo.User" alias="User"/>
-        <typeAlias type="com.wujiuye.morelove.pojo.Role" alias="Role"/>
-        <typeAlias type="com.wujiuye.morelove.pojo.Album" alias="Album"/>
-        <typeAlias type="com.wujiuye.morelove.pojo.MemorialDay" alias="MemorialDay"/>
-        <typeAlias type="com.wujiuye.morelove.pojo.Itinerary" alias="Itinerary"/>
-        <typeAlias type="com.wujiuye.morelove.pojo.Lover" alias="Lover"/>
-        <typeAlias type="com.wujiuye.morelove.pojo.Lovetime" alias="Lovetime"/>
-        <typeAlias type="com.wujiuye.morelove.pojo.Photos" alias="Photos"/>
-        <typeAlias type="com.wujiuye.morelove.pojo.AddressProvince" alias="Province"/>
-        <typeAlias type="com.wujiuye.morelove.pojo.AddressCity" alias="City"/>
-        <typeAlias type="com.wujiuye.morelove.pojo.AddressArea" alias="Area"/>
-        <typeAlias type="com.wujiuye.morelove.pojo.ScenicArea" alias="ScenicArea"/>
-        <typeAlias type="com.wujiuye.morelove.pojo.ScenicAreaImage" alias="ScenicAreaImage"/>
+        <typeAlias type="wujiuye.morelove.pojo.User" alias="User"/>
+        <typeAlias type="wujiuye.morelove.pojo.Role" alias="Role"/>
+        <typeAlias type="wujiuye.morelove.pojo.Album" alias="Album"/>
+        <typeAlias type="wujiuye.morelove.pojo.MemorialDay" alias="MemorialDay"/>
+        <typeAlias type="wujiuye.morelove.pojo.Itinerary" alias="Itinerary"/>
+        <typeAlias type="wujiuye.morelove.pojo.Lover" alias="Lover"/>
+        <typeAlias type="wujiuye.morelove.pojo.Lovetime" alias="Lovetime"/>
+        <typeAlias type="wujiuye.morelove.pojo.Photos" alias="Photos"/>
+        <typeAlias type="wujiuye.morelove.pojo.AddressProvince" alias="Province"/>
+        <typeAlias type="wujiuye.morelove.pojo.AddressCity" alias="City"/>
+        <typeAlias type="wujiuye.morelove.pojo.AddressArea" alias="Area"/>
+        <typeAlias type="wujiuye.morelove.pojo.ScenicArea" alias="ScenicArea"/>
+        <typeAlias type="wujiuye.morelove.pojo.ScenicAreaImage" alias="ScenicAreaImage"/>
     </typeAliases>
 
 </configuration>

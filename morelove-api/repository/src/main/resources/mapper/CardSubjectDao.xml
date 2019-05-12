@@ -15,7 +15,7 @@
         update_datetime as updateDatetime
     </sql>
 
-    <insert id="insertOne" parameterType="com.wujiuye.morelove.pojo.CardSubject">
+    <insert id="insertOne" parameterType="wujiuye.morelove.pojo.CardSubject">
         insert into tb_cardsubj
         (love_id,subject,period,subj_img)
         values
@@ -32,7 +32,7 @@
         )
     </insert>
 
-    <select id="getAllSubject" resultType="com.wujiuye.morelove.pojo.CardSubject">
+    <select id="getAllSubject" resultType="wujiuye.morelove.pojo.CardSubject">
         select
         <include refid="Base_Cell_List"/>
         from tb_cardsubj
@@ -44,7 +44,7 @@
         delete from tb_cardsubj where love_id=#{loveId} and subject=#{subject}
     </delete>
 
-    <select id="findOne" resultType="com.wujiuye.morelove.pojo.CardSubject">
+    <select id="findOne" resultType="wujiuye.morelove.pojo.CardSubject">
         select
         <include refid="Base_Cell_List"/>
         from tb_cardsubj
