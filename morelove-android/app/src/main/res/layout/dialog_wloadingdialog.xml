@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loadingDialog"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/dialog_wloadingdialog"
+    android:gravity="center"
+    android:minWidth="@dimen/dialog_wloadingdialog_min_width"
+    android:orientation="horizontal"
+    android:padding="@dimen/view_margin_top_buttom_large">
+
+    <ProgressBar
+        android:id="@+id/loadingView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/app_name"
+        android:scaleType="fitCenter"/>
+
+    <TextView
+        style="@style/TextviewContextStyle"
+        android:id="@+id/textView"
+        android:layout_marginLeft="@dimen/view_margin_left_right_20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="loading..."
+        android:visibility="visible"/>
+
+
+</LinearLayout>

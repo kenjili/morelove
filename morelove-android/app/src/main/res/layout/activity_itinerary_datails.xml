@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/navigation_bar" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/view_margin_left_right_10">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivUserImg"
+                android:layout_width="@dimen/icon_default_size"
+                android:layout_height="@dimen/icon_default_size"
+                android:src="@mipmap/default_user_img2" />
+
+            <TextView
+                android:id="@+id/tvUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/view_margin_left_right_10"
+                android:layout_toRightOf="@id/ivUserImg"
+                android:text="@string/app_name" />
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="2018-09-09 12:09:00"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/font_size_small" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tvDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_margin_left_right_10"
+            android:paddingLeft="@dimen/icon_default_size"
+            android:text="@string/app_signature"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/font_size_context" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/view_margin_left_right_10"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvAddress"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/font_size_context"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="@string/public_itinerary_address"/>
+
+            <ImageView
+                android:layout_width="@dimen/icon_small_size"
+                android:layout_height="@dimen/icon_small_size"
+                android:padding="@dimen/view_margin_top_buttom_small"
+                android:src="@mipmap/icon_address"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/view_margin_top_buttom"
+                android:layout_toLeftOf="@id/tvAddress"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/click_album_preview_model"
+        android:textSize="@dimen/font_size_context"
+        android:textColor="@android:color/darker_gray"
+        android:background="@android:color/white"
+        android:layout_marginTop="@dimen/view_margin_top_buttom_small"
+        android:gravity="center"
+        android:padding="@dimen/view_margin_top_buttom"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:background="@color/activity_background_color"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/ryAlbum"
+        android:layout_width="match_parent"
+        android:background="@android:color/white"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

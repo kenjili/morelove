@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/navigation_bar" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/view_margin_top_buttom_small"
+        android:background="@android:color/white">
+
+        <EditText
+            android:id="@+id/etTitle"
+            style="@style/item_input_edittext"
+            android:hint="@string/public_itinerary_title" />
+
+        <ImageView
+            android:id="@+id/ivClearTitle"
+            style="@style/item_input_clear"
+            android:contentDescription="@null"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ly_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:layout_marginTop="@dimen/view_margin_left_right_10"
+        android:orientation="horizontal"
+        android:padding="@dimen/view_margin_left_right_10">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_address" />
+
+        <TextView
+            android:id="@+id/tvAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/view_margin_left_right_10"
+            android:layout_weight="1"
+            android:hint="@string/public_itinerary_address"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/font_size_context" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:layout_marginTop="@dimen/view_margin_left_right_10"
+        android:padding="@dimen/view_margin_top_buttom">
+
+        <EditText
+            android:id="@+id/etContext"
+            style="@style/item_input_edittext"
+            android:gravity="top"
+            android:hint="@string/public_itinerary_context"
+            android:imeOptions="actionNext"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:maxLines="15" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/view_margin_left_right_20"
+        android:background="@android:color/white"
+        android:gravity="left"
+        android:orientation="horizontal"
+        android:padding="@dimen/view_margin_top_buttom">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="图片总大小："
+            android:singleLine="true"
+            android:textColor="#ff080808"
+            android:textSize="@dimen/font_size_context" />
+
+        <TextView
+            android:id="@+id/tvImageSizeCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/view_margin_left_right_20"
+            android:background="@null"
+            android:hint="297091"
+            android:singleLine="true"
+            android:textColor="#ff080808"
+            android:textSize="@dimen/font_size_small"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:layout_marginLeft="@dimen/view_margin_left_right_10"
+        android:layout_marginRight="@dimen/view_margin_left_right_10"
+        android:background="@color/activity_background_color" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rySelectImages"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+</LinearLayout>

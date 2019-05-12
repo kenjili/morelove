@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="wjy.morelove">
+
+    <!-- 添加网络访问权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 添加网络状态访问权限 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- 上传文件服务 -->
+        <service android:name=".service.UploadPublicService"
+            android:process=":Upload"
+            android:exported="true"/>
+
+        <!-- 欢迎页,全屏 -->
+        <activity android:name=".activity.WelcomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".activity.MainActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.LoginActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.RegistActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ResetPasswordActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.BindLoverActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.PublicLovetimeActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.PublicItineraryActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.BrowserActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ItineraryDeatilsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.AlbumPreviewActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.LovetimeDetailsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ChatMessageActivity" android:screenOrientation="portrait" android:launchMode="singleTask"/>
+        <activity android:name=".activity.MemorialDayActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.MemorialDayAddActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.CardSubjuctActivity" android:screenOrientation="portrait"/>
+
+        <!-- 使用hook方式 -->
+        <!--<activity android:name=".hook.ActivityProxy"/>-->
+
+    </application>
+
+</manifest>

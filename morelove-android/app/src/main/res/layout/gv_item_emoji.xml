@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+                android:background="@android:color/transparent"
+                android:padding="@dimen/view_margin_top_buttom_small"
+                android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_emoji"
+        android:layout_width="@dimen/icon_small_size"
+        android:background="@android:color/transparent"
+        android:layout_centerInParent="true"
+        android:visibility="visible"
+        android:textSize="@dimen/font_size_superlarge"
+        android:layout_height="@dimen/icon_small_size" />
+
+</RelativeLayout>

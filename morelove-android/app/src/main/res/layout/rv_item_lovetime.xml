@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ry_item_bg_round_white"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/view_margin_left_right_10"
+            android:layout_marginRight="@dimen/view_margin_left_right_10"
+            android:layout_marginTop="@dimen/view_margin_top_buttom">
+
+            <ImageView
+                android:id="@+id/ivUser"
+                android:layout_width="@dimen/icon_default_size"
+                android:layout_height="@dimen/icon_default_size"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/default_user_img1" />
+
+            <TextView
+                android:id="@+id/tvUsername"
+                style="@style/TextviewContextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/view_margin_left_right_10"
+                android:layout_toRightOf="@id/ivUser"
+                android:text="@string/app_name" />
+
+            <ImageView
+                android:id="@+id/ivEdit"
+                android:layout_width="@dimen/icon_small_size"
+                android:layout_height="@dimen/icon_small_size"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/icon_edit_jiantou" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tvDetails"
+            style="@style/TextviewContextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="5"
+            android:paddingBottom="@dimen/view_margin_left_right_10"
+            android:paddingLeft="@dimen/view_margin_left_right_10"
+            android:paddingRight="@dimen/view_margin_left_right_10"
+            android:paddingTop="@dimen/view_margin_top_buttom"
+            android:text="这是相册标题，很长吧！是相册标题，很长吧！是相册标题，很长吧！是相册标题，很长吧是相册标题，很长吧是相册标题，很长吧是相册标题，很长吧" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/view_margin_left_right_10"
+            android:paddingRight="@dimen/view_margin_left_right_10"
+            android:paddingTop="@dimen/view_margin_top_buttom">
+
+            <ImageView
+                android:id="@+id/ivAlbum1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:background="@android:color/transparent" />
+
+            <ImageView
+                android:id="@+id/ivAlbum2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/view_margin_top_buttom_small"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:background="@android:color/transparent"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/ivAlbum3"
+                android:layout_width="0dp"
+                android:scaleType="centerCrop"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/view_margin_top_buttom_small"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:visibility="gone" />
+
+
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/view_margin_top_buttom_small"
+            android:paddingLeft="@dimen/view_margin_left_right_10"
+            android:paddingRight="@dimen/view_margin_left_right_10">
+
+
+            <LinearLayout
+                android:id="@+id/rySee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <!-- 查看次数 -->
+                <ImageView
+                    android:layout_width="@dimen/icon_small_size"
+                    android:layout_height="@dimen/icon_small_size"
+                    android:src="@mipmap/icon_see" />
+
+                <TextView
+                    android:id="@+id/tvSeeCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/view_margin_top_buttom_small"
+                    android:text="0" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical">
+
+                <!-- 上传日期 -->
+                <ImageView
+                    android:id="@+id/ivDate"
+                    android:layout_width="@dimen/icon_small_size"
+                    android:layout_height="@dimen/icon_small_size"
+                    android:layout_marginLeft="@dimen/view_margin_left_right_10"
+                    android:src="@mipmap/icon_date" />
+
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/view_margin_top_buttom_small"
+                    android:text="2018-06-02" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

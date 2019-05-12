@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- app的主题颜色 -->
+    <color name="app_theme_color">#fb7299</color>
+    <!-- activity的统一背景颜色 -->
+    <color name="activity_background_color">#f2f2f4</color>
+    <!-- app默认统一输入框背景色 -->
+    <color name="editview_bgcolor_default">#fefefe</color>
+    <!-- toolbar菜单的默认颜色 -->
+    <color name="toolbar_font_color">#8a8a8a</color>
+    <!-- toolbar的背景颜色 -->
+    <color name="toolbar_bgcolor">#ffffff</color>
+    <!-- 首页的tab选中的颜色 -->
+    <color name="tablayout_select_textcolor">#FFFAF0</color>
+
+</resources>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/view_margin_left_right_10">
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2018-07-09 12:00:00"
+        android:textSize="@dimen/font_size_supersmall"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        tool:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/ivUserImg"
+        android:layout_width="@dimen/icon_default_size"
+        android:layout_height="@dimen/icon_default_size"
+        android:src="@mipmap/default_user_img2"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="@dimen/ry_item_chat_message_tvmsg_max_width"
+        android:layout_marginTop="@dimen/view_margin_top_buttom_small"
+        android:background="@drawable/bg_msg_receive"
+        android:paddingLeft="@dimen/view_margin_left_right_20"
+        android:paddingRight="@dimen/view_margin_left_right_10"
+        android:text="@string/app_signature"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/font_size_context"
+        app:layout_constraintLeft_toRightOf="@id/ivUserImg"
+        app:layout_constraintTop_toBottomOf="@id/ivUserImg" />
+
+</android.support.constraint.ConstraintLayout>
