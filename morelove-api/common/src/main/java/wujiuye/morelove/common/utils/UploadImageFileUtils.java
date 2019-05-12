@@ -86,13 +86,13 @@ public class UploadImageFileUtils {
             Thumbnails.of(imgFile.getInputStream())
                     .scale(0.5)//宽高缩放比例
                     .outputQuality(0.25)//质量缩放
-                    .watermark(
-                            //位置
-                            Positions.BOTTOM_RIGHT,
-                            //水印图片
-                            ImageIO.read(new File(Thread.currentThread().getContextClassLoader().getResource("/").getPath() + "images/morelove-logo-shuiying.png")),
-                            //透明度
-                            0.6f)
+//                    .watermark(
+//                            //位置
+//                            Positions.BOTTOM_RIGHT,
+//                            //水印图片
+//                            ImageIO.read(new File(Thread.currentThread().getContextClassLoader().getResource("/").getPath() + "images/morelove-logo-shuiying.png")),
+//                            //透明度
+//                            0.6f)
                     .toFile(thumbAbsolutePath);
         } catch (IOException e) {
             e.printStackTrace();
