@@ -23,7 +23,7 @@ public class ServiceLog {
     /**
      * 定义切点
      */
-    @Pointcut("execution(* wujiuye.morelove.api.service.*..*.*(..))")
+    @Pointcut("execution(* wujiuye.morelove.service.*..*.*(..))")
     private void logPointcut() {
     }
 

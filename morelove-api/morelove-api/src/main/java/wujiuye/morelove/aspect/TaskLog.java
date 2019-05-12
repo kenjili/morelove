@@ -19,7 +19,7 @@ public class TaskLog {
     /**
      * 定义切点
      */
-    @Pointcut("execution(* wujiuye.morelove.api.tasks.*..*.*(..))")
+    @Pointcut("execution(* wujiuye.morelove.tasks.*..*.*(..))")
     private void taskLogPointcut() {
     }
 

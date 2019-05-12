@@ -58,8 +58,8 @@ webConfig:
   RootPath:
     UploadFile:
       #本地
-      Private: /Users/wjy/apacheweb/weiai7lv/images
-      Public: /Users/wjy/apacheweb/weiai7lv/pulImgs
+      Private: /Users/wjy/apacheweb/morelove/images
+      Public: /Users/wjy/apacheweb/morelove/pulImgs
 
     #返回给客户端的图片路径需要拼接上的域名
     #因为图片具有隐私性，所以不能使用nginx分离出静态资源的访问，其它的静态资源可以
@@ -67,7 +67,7 @@ webConfig:
     Resource:
       Private: http://127.0.0.1:80/images
       #返回给客户端的图片路径需要拼接上的域名（静态资源的配置，另启一个服务器的）
-      Public: http://127.0.0.1:80/weiai7lv/pulImgs
+      Public: http://127.0.0.1:80/morelove/pulImgs
 
   #保存相册的根目录
   ImagesRootPath:

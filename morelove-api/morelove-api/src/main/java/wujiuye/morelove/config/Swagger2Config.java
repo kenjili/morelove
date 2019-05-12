@@ -1,4 +1,4 @@
-package wujiuye.morelove;
+package wujiuye.morelove.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,7 +35,7 @@ import com.google.common.base.Predicate;
  */
 @Configuration
 @EnableSwagger2 //开启Swagger
-public class MoreLoveSwagger2 implements WebMvcConfigurer {
+public class Swagger2Config implements WebMvcConfigurer {
 
 
     /**
@@ -55,8 +55,8 @@ public class MoreLoveSwagger2 implements WebMvcConfigurer {
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)//文档类型，swagger2.0
                 .apiInfo(new ApiInfoBuilder()
-                        .title("微爱后端接口文档1.0版本")
-                        .description("简单优雅的restfun风格")
+                        .title("MoreLove后端接口文档1.0版本")
+                        .description("简单优雅的restful风格")
                         //点击描述时跳转的链接
                         .termsOfServiceUrl("http://weiai.wujiuye.com/")
                         //文档的版本号
@@ -64,8 +64,8 @@ public class MoreLoveSwagger2 implements WebMvcConfigurer {
                         .build())
                 .select()
                 //配置了api文件也就是controller包的路径，不然生成的文档扫描不到接口。
-                .apis(MoreLoveSwagger2.basePackage(
-                        "wujiuye.morelove.api.controller," +
+                .apis(Swagger2Config.basePackage(
+                        "wujiuye.morelove.controller," +
                         "wujiuye.morelove.album.controller," +
                         "wujiuye.morelove.business.controller," +
                         "wujiuye.morelove.found.controller," +
