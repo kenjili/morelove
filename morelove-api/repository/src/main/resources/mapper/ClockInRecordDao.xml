@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="wujiuye.morelove.dao.ClockInRecordDao">
+
+    <sql id="Base_Cell_List">
+        id,
+        subject_id as subjectId,
+        user_id as userId,
+        create_datetime as createDatetime,
+        update_datetime  as updateDatetime
+    </sql>
+
+    <insert id="clockIn" parameterType="com.wujiuye.morelove.pojo.ClockInRecord">
+        insert into tb_clockin
+        (subject_id,user_id)
+        values
+        (
+        #{subjectId},#{userId}
+        )
+    </insert>
+
+    <resultMap id="MuliteMap" type="com.wujiuye.morelove.pojo.dto.ClockInHistoryDto">
+        <id column="id" property="id"/>
+        <result column="love_id" property="loveId"/>
+        <result column="ci_date" property="ciDate"/>
+        <association property="subject" columnPrefix="s_" javaType="com.wujiuye.morelove.pojo.dto.ClockInHistoryDto$SubjectDto">
+            <id column="subject_id" property="subjectId"/>
+            <result column="name" property="name"/>
+        </association>
+        <association property="user" columnPrefix="u_" javaType="com.wujiuye.morelove.pojo.dto.ClockInHistoryDto$UserDto">
+            <id column="user_id" property="id"/>
+            <result column="username" property="username"/>
+            <result column="head_thumb" property="headThumb"/>
+            <result column="sex" property="sex"/>
+        </association>
+    </resultMap>
+
+    <select id="findClockInHitory" resultMap="MuliteMap">
+        select
+        l.id as love_id,
+
+        u.id as u_user_id,
+        u.username as u_username,
+        u.head_thumb as u_head_thumb,
+        u.sex as u_sex,
+
+        s.id as s_subject_id,
+        s.subject as s_name,
+
+        ci.create_datetime as ci_date
+
+        from tb_love l,tb_user u,tb_cardsubj s,tb_clockin ci
+        where l.id=#{loveId}
+        and u.id=ci.user_id
+        and (l.man_id=u.id or l.women_id=u.id)
+        and s.subject=#{subject}
+        and s.id=ci.subject_id
+        order by ci.create_datetime desc
+        limit #{offerset},#{limit}
+    </select>
+
+    <select id="selectByDate" resultType="com.wujiuye.morelove.pojo.ClockInRecord">
+        select
+        <include refid="Base_Cell_List"/>
+        from tb_clockin
+        where subject_id=#{subjectId}
+        and user_id=#{userId}
+        and create_datetime &gt;= '${fromDate}'
+        and create_datetime &lt; '${toDate}'
+        limit 1
+    </select>
+
+</mapper>

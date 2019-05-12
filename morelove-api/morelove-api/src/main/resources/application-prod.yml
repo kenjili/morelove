@@ -1,0 +1,77 @@
+#阿里巴巴 druid 连接池配置，生产环境
+spring:
+  datasource:
+    druid:
+      initial-size: 2
+      max-active: 50
+      min-idle: 10
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      max-open-prepared-statements: 20
+      validation-query: select 1
+      validation-query-timeout: 30000
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      filters: mergeStat,wall,log4j2
+
+  #redis的配置
+  redis:
+    #redis服务端ip地址
+    host: 127.0.0.1
+    #服务端端口号
+    port: 6379
+    #数据库
+    database: 0
+    password:
+    #设置缓存过期时间，单位为秒,可以在redis-cli使用ttl key查看设置是否生效
+    timeout: 86400
+    jedis:
+      pool:
+        #其它连接池的配置
+        #设置最大连接数
+        max-active: 1000
+        #设置最大空闲连接数
+        max-idle: 100
+        #设置最小空闲连接数
+        min-idle: 1
+        #设置连接池没有连接后客户端的最大等待时间，单位是毫秒
+        max-wait: 6
+
+#日记配置
+logging:
+  #文件存储位置及文件名
+  file: /var/javaweb/logs/weiai7lv/weiai-runing.log
+  #级别
+  level:
+    #root是对所有的都起作用
+    root: info
+
+
+#常量配置
+webConfig:
+  #系统保存客户端上传的文件的根目录
+  RootPath:
+    UploadFile:
+      #发布
+      Private: /var/javaweb/static/weiai7lv/images
+      Public: /var/javaweb/static/weiai7lv/pulImgs
+
+    #返回给客户端的图片路径需要拼接上的域名
+    #因为图片具有隐私性，所以不能使用nginx分离出静态资源的访问，其它的静态资源可以
+  ServerName:
+    Resource:
+      Private: http://weiai.wujiuye.com/images
+      #返回给客户端的图片路径需要拼接上的域名（静态资源的配置，另启一个服务器的）
+      Public: http://images.wujiuye.com/weiai7lv/pulImgs
+
+  #保存相册的根目录
+  ImagesRootPath:
+    Album: /album
+    #保存恋爱时光所上传的照片的根目录
+    Lovetime: /lovetime
+    #纪念日背景图片上传保存的根路径
+    Memorialday: /memorialday

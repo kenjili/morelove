@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>morelove-api</artifactId>
+    <version>1.2.0-REL</version>
+    <packaging>war</packaging>
+
+    <parent>
+        <artifactId>MoreLove</artifactId>
+        <groupId>wujiuye.morelove</groupId>
+        <version>1.2.0-REL</version>
+    </parent>
+
+    <dependencies>
+
+
+        <!--  quartz -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-quartz</artifactId>
+        </dependency>
+
+
+        <!-- ====================   集成swagger2用于构造api文档   ===================== -->
+        <!-- 教程：https://www.cnblogs.com/jtlgb/p/8532433.html -->
+        <!-- 构建Restful API 文档 -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+        </dependency>
+
+        <!-- =================== spring-boot热部署 =================  -->
+        <!--
+            需要设置(mac系统)：
+                1）偏好设置==> “Build,Execution,Deplyment” -> “Compiler”，选中打勾 “Build project automatically” 。
+                2）command+option+shift -> 选择'Registry...' -> 选中打勾 “compiler.automake.allow.when.app.running” 。
+            配置了后在修改java文件后也就支持了热启动，不过这种方式是属于项目重启（速度比较快的项目重启），
+            会清空session中的值，也就是如果有用户登陆的话，项目重启后需要重新登陆。
+            默认情况下，/META-INF/maven，/META-INF/resources，/resources，/static，/templates，/public
+            这些文件夹下的文件修改不会使应用重启，但是会重新加载（devtools内嵌了一个LiveReload server，当资源发生改变时，浏览器刷新）。
+         -->
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-devtools</artifactId>-->
+        <!--<optional>true</optional>-->
+        <!--</dependency>-->
+
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- ============== 使用模版引擎thymeleaf渲染html页面，替代jsp ============== -->
+        <!-- 使用thymeleaf处理html模版，前后的分离，需要在项目的resources目录下创建thymeleas目录
+            spring boot不建议使用jsp，如果使用jsp则可以使用el表达式，需要引入依赖
+            spring boot对thymeleas很好的支持
+            使用thymeleas就可以将项目打包为jar包而不是war包，所以webapp目录用不到，不要存放任何文件到webapp目录下
+            要返回html页面就不能使用@RestController，因为@RestController会直接将结果返回为json，
+            在需要返回json的方法中使用@ResponeBody就可以返回json数据了。
+            spring boot默认resources目录下的static为静态文件目录，所有存放在resources/static目录下的文件都是静态资源文件,
+            可以自己添加静态资源目录，如：
+                @Configuration
+                public class WebMvcConfigurerAdapter extends org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter {
+                    /**
+                    * 静态资源配置
+                    * @param registry
+                    */
+                    @Override
+                    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+                        registry.addResourceHandler("/print/**").addResourceLocations("classpath:/print/");
+                        super.addResourceHandlers(registry);
+                    }
+                }
+                当访问http://域名:端口/print/**时，就是去resources/print/目录下去定位静态资源文件
+         -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+
+        <!-- =============== web应用必须的依赖 ================ -->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+
+        <!-- ====================mybatis=================== -->
+        <!-- springboot-mybatis -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+
+        <!-- mysql驱动 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.35</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- 阿里druid连接池 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+        </dependency>
+
+        <!-- ====================redis=================== -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <!-- 1.5的版本默认采用的连接池技术是jedis 2.0以上版本默认连接池是lettuce, 在这里采用jedis，所以需要排除lettuce的jar -->
+            <exclusions>
+                <exclusion>
+                    <groupId>redis.clients</groupId>
+                    <artifactId>jedis</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.lettuce</groupId>
+                    <artifactId>lettuce-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- 使用alibaba的fastjson自定义序列化和反序列号 -->
+        <!--<dependency>-->
+        <!--<groupId>com.alibaba</groupId>-->
+        <!--<artifactId>fastjson</artifactId>-->
+        <!--<version>1.2.53</version>-->
+        <!--</dependency>-->
+
+        <!-- 使用第三方实现session缓存 -->
+        <!--<dependency>-->
+        <!--<groupId>org.crazycake</groupId>-->
+        <!--<artifactId>shiro-redis</artifactId>-->
+        <!--<version>3.2.2</version>-->
+        <!--</dependency>-->
+
+
+        <!-- 添加jedis客户端 -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
+
+        <!--spring2.0集成redis所需common-pool2-->
+        <!-- 必须加上，jedis依赖此 -->
+        <!-- spring boot 2.0 的操作手册有标注 大家可以去看看
+        地址是：https://docs.spring.io/spring-boot/docs/2.0.3.RELEASE/reference/htmlsingle/-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>2.5.0</version>
+        </dependency>
+
+        <!-- ==================== shiro =================== -->
+
+        <!--
+            shiro-quartz中依赖了quartz-1.6.1.jar
+            shiro-quartz实现定时任务管理session，即验证session是否过期
+        -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-all</artifactId>
+            <exclusions>
+                <!-- 排除依赖shiro-quartz，因为shiro-quartz使用的quartz版本太低，运行报错
+                    Error creating bean with name 'quartzScheduler' defined in class path resource [org/springframework/boot/autoconfigure/quartz/QuartzAutoConfiguration.class]:
+                        Invocation of init method failed;
+                        nested exception is java.lang.NoSuchMethodError:
+                            org.quartz.Scheduler.getListenerManager()Lorg/quartz/ListenerManager;
+                    改用ExecutorServiceSessionValidationScheduler实现。
+                 -->
+                <exclusion>
+                    <groupId>org.apache.shiro</groupId>
+                    <artifactId>shiro-quartz</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- ===================jackson==================== -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+
+        <!-- ===================依赖的子模块==================== -->
+        <dependency>
+            <groupId>wujiuye.morelove</groupId>
+            <artifactId>service-album</artifactId>
+            <type>war</type>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>wujiuye.morelove</groupId>
+            <artifactId>service-business</artifactId>
+            <type>war</type>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>wujiuye.morelove</groupId>
+            <artifactId>service-lovetime</artifactId>
+            <type>war</type>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>wujiuye.morelove</groupId>
+            <artifactId>service-ex</artifactId>
+            <type>war</type>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>wujiuye.morelove</groupId>
+            <artifactId>repository</artifactId>
+            <type>war</type>
+            <version>${project.version}</version>
+        </dependency>
+
+
+        <!-- 解决该模块在编译过程中报错，要使用子模块的api -->
+        <dependency>
+            <groupId>wujiuye.morelove</groupId>
+            <artifactId>service-business</artifactId>
+            <type>jar</type>
+            <classifier>business</classifier>
+            <scope>provided</scope>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>wujiuye.morelove</groupId>
+            <artifactId>repository</artifactId>
+            <type>jar</type>
+            <classifier>dao</classifier>
+            <scope>provided</scope>
+            <version>${project.version}</version>
+        </dependency>
+        <!-- =================== end 依赖的子模块==================== -->
+
+
+        <!-- 阿里云短信依赖的jar包 -->
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-core</artifactId>
+            <version>4.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+
+        <!-- 发送邮件需要依赖的jar包 -->
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.5.6</version>
+        </dependency>
+
+        <!-- ====================== 测试包  ==============================-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+
+    <build>
+        <finalName>weiai</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                    <addResources>true</addResources>
+                </configuration>
+            </plugin>
+            <!-- ==============   maven-surefire-plugin是maven生命周期中的test阶段使用的插件    ==================== -->
+            <!--
+                执行mvn test|package|install 都会执行到测试，
+                maven-surefire-plugin 的test目标会自动执行测试源码路径下符合命名模式的测试类。
+                默认测试源代码路径： src/test/java/
+                测试类命名模式：
+                    Test*.java
+                    按上述模式命名的类， mvn test就能自动运行他们。
+                测试结果目录：target/surefire-repotrs
+                       目录下的"Test-包名.类名.xml"是该测试类的测试结果报告，每个<testcase>标签对应一个测试方法（@Test）
+             -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18.1</version>
+                <!-- 如果想要跳过测试生命周期，则添加如下配置 -->
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <!-- 没有发现web.xml文件不报错，继续打包 -->
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <!-- 将其它war包导入进行来进行合并 -->
+                    <overlays>
+                        <overlay>
+                            <groupId>wujiuye.morelove</groupId>
+                            <artifactId>repository</artifactId>
+                        </overlay>
+                        <overlay>
+                            <groupId>wujiuye.morelove</groupId>
+                            <artifactId>service-album</artifactId>
+                        </overlay>
+                        <overlay>
+                            <groupId>wujiuye.morelove</groupId>
+                            <artifactId>service-business</artifactId>
+                        </overlay>
+                        <overlay>
+                            <groupId>wujiuye.morelove</groupId>
+                            <artifactId>service-lovetime</artifactId>
+                        </overlay>
+                        <overlay>
+                            <groupId>wujiuye.morelove</groupId>
+                            <artifactId>service-ex</artifactId>
+                        </overlay>
+                    </overlays>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

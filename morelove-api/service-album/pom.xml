@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>service-album</artifactId>
+    <packaging>war</packaging>
+
+    <parent>
+        <artifactId>MoreLove</artifactId>
+        <groupId>wujiuye.morelove</groupId>
+        <version>1.2.0-REL</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-all</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>wujiuye.morelove</groupId>
+            <artifactId>repository</artifactId>
+            <type>jar</type>
+            <classifier>dao</classifier>
+            <scope>provided</scope>
+            <version>${project.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <!-- 在找不到web.xml配置文件是不报错，继续打包 -->
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+
+                    <attachClasses>true</attachClasses>
+                    <classesClassifier>album</classesClassifier>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
