@@ -8,7 +8,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.io.Serializable;
 import java.util.List;
@@ -16,6 +19,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.netty.util.internal.StringUtil;
+import wjy.morelove.AppConfig;
 import wjy.morelove.R;
 import wjy.morelove.bean.SubjectCard;
 import wjy.morelove.widget.GridSpacingItemDecoration;
@@ -100,6 +105,8 @@ public class DaCardAdpter extends
 
         @BindView(R.id.btnCard)
         protected Button btnCard;
+        @BindView(R.id.ivSubImg)
+        protected ImageView ivSubImg;
 
         SubjectCard subjectCard;
 
@@ -111,21 +118,31 @@ public class DaCardAdpter extends
         public void showData(Serializable bean) {
             this.subjectCard = (SubjectCard) bean;
             tvSubject.setText(subjectCard.getSubject());
-            tvNote.setText(subjectCard.getNote());
-            if (subjectCard.getFinish()) {
+
+            if (subjectCard.getPeriod() != null) {
+                if (subjectCard.getPeriod() == 1) {
+                    tvNote.setText("每日24点前完成打卡");
+                }
+            }
+            if (subjectCard.isFinish()) {
                 btnCard.setText("已完成打卡");
+                btnCard.setClickable(false);
             } else {
                 btnCard.setText("打  卡");
+            }
+
+            if (!StringUtil.isNullOrEmpty(subjectCard.getSubjImg())) {
+                Glide.with(context)
+                        .load(subjectCard.getSubjImg())
+                        .apply(AppConfig.getRequestOptions())
+                        .into(ivSubImg);
             }
         }
 
         @OnClick(R.id.btnCard)
         protected void onDaCradClick() {
-            if (!this.subjectCard.getFinish()) {
-                btnCard.setText("已完成打卡");
-                btnCard.setClickable(false);
-            } else {
-                //调整到打卡历史
+            if (onItemClickListerer != null) {
+                onItemClickListerer.onItemClick(subjectCard);
             }
         }
 

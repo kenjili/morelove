@@ -35,7 +35,7 @@
             android:background="@drawable/btn_memorialday_delete">
 
             <ImageView
-                android:id="@+id/ivAlbum2"
+                android:id="@+id/ivSubImg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/img_default_memorailday"

@@ -137,6 +137,22 @@ public class LoverClockInServiceImpl implements LoverClockInService {
                 if (!StringUtils.strIsNull(cardSubject.getSubjImg())) {
                     cardSubject.setSubjImg(webConstantConfig.getPrivateResourceServerName() + cardSubject.getSubjImg());
                 }
+                //判断是否已经打卡
+                CardPeriod cardPeriod = CardPeriod.getCardPeriod(cardSubject.getPeriod());
+                String fromDate = null, toDate = null;
+                switch (cardPeriod) {
+                    case EVERY_DAY:
+                        //判断今天是否已经打卡了
+                        fromDate = DateTimeUtils.getCurrentYMDString() + " 00:00:00";
+                        toDate = DateTimeUtils.getAfterDaysDayYMDStringWithDays(1) + " 00:00:00";
+                        break;
+                }
+                ClockInRecord clockInRecord = clockInRecordDao.selectByDate(cardSubject.getId(), user.getId(), fromDate, toDate);
+                if (clockInRecord != null) {
+                    cardSubject.setIsFinish(true);
+                } else {
+                    cardSubject.setIsFinish(false);
+                }
             }
         }
         return result;

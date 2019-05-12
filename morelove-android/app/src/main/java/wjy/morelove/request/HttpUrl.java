@@ -56,4 +56,14 @@ public final class HttpUrl {
     public static final String MEMORIALDAY_LIST_URL = HTTP_VERSION + API_DOMAIN + "/memorialDay/list";
     //删除纪念日
     public static final String MEMORIALDAY_DELETE_URL = HTTP_VERSION + API_DOMAIN + "/memorialDay/delete";
+
+    //获取打卡主题列表
+    public static final String CAR_SUBJECT_LIST_URL = HTTP_VERSION + API_DOMAIN + "/subject/list";
+    //打卡
+    public static final String CLOCK_IN_URL = HTTP_VERSION + API_DOMAIN + "/subject/clockin";
+    //创建打卡主题
+    public static final String CREATE_CAR_SUBJECT_URL = HTTP_VERSION + API_DOMAIN + "/subject/create";
+    //获取打卡记录
+    public static final String CLOCK_IN_RELOCR_LIST_URL = HTTP_VERSION + API_DOMAIN + "/subject/clockin/history/{page}/{pageSize}";
+
 }

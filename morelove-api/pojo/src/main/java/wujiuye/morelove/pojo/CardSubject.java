@@ -21,4 +21,7 @@ public class CardSubject {
     private Date createDatetime;
     private Date updateDatetime;
 
+    //是否已经完成打卡
+    private Boolean isFinish;
+
 }
