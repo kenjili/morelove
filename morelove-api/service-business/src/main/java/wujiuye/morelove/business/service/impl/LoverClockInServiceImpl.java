@@ -1,5 +1,6 @@
 package wujiuye.morelove.business.service.impl;
 
+import org.springframework.transaction.annotation.Transactional;
 import wujiuye.morelove.business.service.LoverClockInService;
 import wujiuye.morelove.common.config.WebConstantConfig;
 import wujiuye.morelove.common.exception.WebException;
@@ -27,6 +28,7 @@ import java.util.List;
  * @version 1.0 on 2019/5/11 {描述：}
  */
 @Service
+@Transactional
 public class LoverClockInServiceImpl implements LoverClockInService {
 
     @Autowired

@@ -1,9 +1,9 @@
 package wujiuye.morelove.webapi;
 
 
-import wujiuye.morelove.api.MoreLoveApplication;
+import wujiuye.morelove.MoreLoveApplication;
 import wujiuye.morelove.pojo.User;
-import wujiuye.morelove.api.service.UserService;
+import wujiuye.morelove.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
